@@ -1,52 +1,52 @@
 import logging
-from telegram.ext import Updater, MessageHandler, Filters
+from telegram.ext import Updater, MessageHandler, Filters, CommandHandler
 
-# Запускаем логгирование
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
 )
 
 logger = logging.getLogger(__name__)
 
-TOKEN = 'BOT_TOKEN'
+TOKEN = '5284222325:AAHt4CqmR3tPcFwGz5vjDnilQ2xxpnRrg-U'
 
 
-# Определяем функцию-обработчик сообщений.
-# У неё два параметра, сам бот и класс updater, принявший сообщение.
+def start(update, context):
+    update.message.reply_text(
+        "Привет! Я эхо-бот. Напишите мне что-нибудь, и я пришлю это назад!")
+
+
+def first(update, context):
+    update.message.reply_text('Создатель, функция создана успешно!')
+
+
+def help(update, context):
+    update.message.reply_text(
+        "Я бот справочник.")
+
+
 def echo(update, context):
-    # У объекта класса Updater есть поле message,
-    # являющееся объектом сообщения.
-    # У message есть поле text, содержащее текст полученного сообщения,
-    # а также метод reply_text(str),
-    # отсылающий ответ пользователю, от которого получено сообщение.
-    update.message.reply_text(update.message.text)
+    an = update.message.text
+    if 'пошел' in an:
+        an = 'Ну и иди!'
+    update.message.reply_text(an)
 
 
 def main():
-    # Создаём объект updater.
-    # Вместо слова "TOKEN" надо разместить полученный от @BotFather токен
     updater = Updater(TOKEN)
 
-    # Получаем из него диспетчер сообщений.
     dp = updater.dispatcher
 
-    # Создаём обработчик сообщений типа Filters.text
-    # из описанной выше функции echo()
-    # После регистрации обработчика в диспетчере
-    # эта функция будет вызываться при получении сообщения
-    # с типом "текст", т. е. текстовых сообщений.
     text_handler = MessageHandler(Filters.text, echo)
 
-    # Регистрируем обработчик в диспетчере.
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("first", first))
     dp.add_handler(text_handler)
-    # Запускаем цикл приема и обработки сообщений.
+
     updater.start_polling()
 
-    # Ждём завершения приложения.
-    # (например, получения сигнала SIG_TERM при нажатии клавиш Ctrl+C)
     updater.idle()
 
 
-# Запускаем функцию main() в случае запуска скрипта.
 if __name__ == '__main__':
     main()
