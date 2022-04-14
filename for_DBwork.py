@@ -123,7 +123,7 @@ class DB:
                 WHERE date = \'{day}\'''').fetchall()]
 
 
-bd = DB()
+# bd = DB()
 # bd.add_company('a', 'b', 'c')
 # bd.add_user('a', 'b', 'c', 1, '1234wer')
 # bd.delete_company('a')
