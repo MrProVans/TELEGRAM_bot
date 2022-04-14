@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import sqlite3
 
 
@@ -94,13 +94,40 @@ class DB:
         else:
             return False
 
+    def remove_user_company(self, id_tg, company):  # редактирование принадлежности пользователя к компании
+        self.con.cursor().execute(f'''UPDATE Users
+                SET company = '{company}'
+                 WHERE id_tg = \'{id_tg}\'''')
+        self.con.commit()
+
+    def check_user_company(self, id_tg):  # проверка принадлежности пользователя к компании
+        if self.con.cursor().execute(f'''SELECT company FROM Users
+         WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0] not in [None, '']:
+            return True
+        else:
+            return False
+
+    def get_answer(self, question, company):  # получение ответа на вопрос
+        return self.con.cursor().execute(f'''SELECT text_a FROM Questions
+         WHERE company = '{company}' AND
+         text_q = \'{question}\'''').fetchall()[0][0]
+
+    def get_ids(self, company):  # получение всех айди пользователей данной компании
+        return [x[0] for x in self.con.cursor().execute(f'''SELECT id_tg FROM Users
+         WHERE company = \'{company}\'''').fetchall()]
+
+    def get_mailings(self):  # получение всех рассылок на сегодня
+        day = datetime.today().strftime('%d.%m.%Y')
+        # print(day)
+        return [(x[0], self.get_ids(x[1])) for x in self.con.cursor().execute(f'''SELECT text, company FROM Mailings
+                WHERE date = \'{day}\'''').fetchall()]
 
 
 bd = DB()
 # bd.add_company('a', 'b', 'c')
-# bd.add_user('a', 'b', 'c', 1, '12432wer')
+# bd.add_user('a', 'b', 'c', 1, '1234wer')
 # bd.delete_company('a')
-# bd.add_mailing('a', '01.01.01', 'A')
+# bd.add_mailing('b', '15.04.2022', 'A')
 # print(bd.check_mailing('a', '01.01.01', 'A'))
 # bd.delete_mailing('a', '01.01.01', 'A')
 # bd.add_question('a3', 'b4', 'Comp')
@@ -111,3 +138,8 @@ bd = DB()
 # print(bd.get_questions('Comp'))
 # print(bd.get_company_password('a'))
 # print(bd.check_company('a'))
+# bd.remove_user_company('1234wer', 'A')
+# print(bd.check_user_company('12432wer'))
+# print(bd.get_answer('a3', 'Comp'))
+# print(bd.get_ids('A'))
+# print(bd.get_mailings())
