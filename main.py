@@ -74,7 +74,7 @@ def main():
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("close", close_keyboard))
     dp.add_handler(CommandHandler("first", first))
-    dp.add_handler(CommandHandler("Адрес", address))
+    dp.add_handler(CommandHandler("address", address))
     dp.add_handler(CommandHandler("phone", phone))
     dp.add_handler(CommandHandler("site", site))
     dp.add_handler(CommandHandler("work_time", work_time))
