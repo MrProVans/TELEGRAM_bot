@@ -126,7 +126,6 @@ def unbinding_company(update, context):
 
 def get_question(update, context):
     company = BD.get_user_company(str(update.message.from_user.id))
-    print(company)
     if company == None:
         if BD.get_user_post(str(update.message.from_user.id)) == 0:
             update.message.reply_text('Вы не можете получить ответ, так как не состоите в компании.')
@@ -243,7 +242,7 @@ def get_date_add(update, context):
 
 
 def stop_new_mailing(update, context):
-    update.message.reply_text('Добавление функции остановлено.')
+    update.message.reply_text('Добавление уведомления остановлено.')
     return ConversationHandler.END
 
 
@@ -314,6 +313,15 @@ def write_question_del(update, context):
     return ConversationHandler.END
 
 
+def send_messange(update, context):
+    list_of_messanges = BD.get_mailings()
+    print(list_of_messanges)
+    for mailing in list_of_messanges:
+        text, ids = mailing
+        for id_ in ids:
+            print(text, id_)
+
+
 def main():  #
     updater = Updater(TOKEN)
     dp = updater.dispatcher
@@ -346,6 +354,7 @@ def main():  #
     dp.add_handler(script_linking_company)
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
     dp.add_handler(CommandHandler("help", helps))
+    dp.add_handler(CommandHandler("send_messange", send_messange))
     script_creature_company = ConversationHandler(
         # Точка входа в диалог.
         # В данном случае — команда /start. Она задаёт первый вопрос.
