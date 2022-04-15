@@ -2,13 +2,14 @@ import logging
 import threading
 import schedule
 import telegram.ext
+from telegram import ReplyKeyboardMarkup
 from telegram.ext import Updater, MessageHandler, Filters, ConversationHandler
 from telegram.ext import CommandHandler
 from for_DBwork import DB
 
 # Импорт необходимых библиотек
-# Запускаем логгирование filename='logging.log',
-logging.basicConfig(
+# Запускаем логгирование
+logging.basicConfig(filename='logging.log',
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
 )
 
@@ -139,6 +140,8 @@ def entering_info(update, context):  # добавление ФИО
         Введите Ваше ФИО через пробел.
         Например: Иванов Иван Иванович''')
         return 3
+    update.message.reply_text('Регистрация прошла успешно!',
+                              reply_markup=markup)
     if context.user_data['Post'] == 0:
         reg_in_company(update, fio[1].capitalize())
     context.user_data.clear()
@@ -492,6 +495,9 @@ def main():  # основной поток, функция
     dp.add_handler(script_linking_company)
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
     dp.add_handler(CommandHandler("help", helps))
+    reply_keyboard = [['/help', '/stop']]
+    global markup
+    markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=False)
     dp.add_handler(CommandHandler('all_question', all_question))
     # dp.add_handler(CommandHandler("send_messange", send_messange))
     script_creature_company = ConversationHandler(
