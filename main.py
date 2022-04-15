@@ -126,8 +126,13 @@ def unbinding_company(update, context):
 
 def get_question(update, context):
     company = BD.get_user_company(str(update.message.from_user.id))
-    if company in None:
-        update.message.reply_text('Вы не можете получить ответ, так как не состоите в компании.')
+    print(company)
+    if company == None:
+        if BD.get_user_post(str(update.message.from_user.id)) == 0:
+            update.message.reply_text('Вы не можете получить ответ, так как не состоите в компании.')
+        else:
+            update.message.reply_text('''Вы - администратор! Уверен, ответы на
+все интересующие вопросы Вы знаете сами)''')
     else:
         update.message.reply_text(str(BD.get_answer(update.message.text, company)))
 
@@ -193,26 +198,31 @@ def add_mailing(update, context):
 
 
 def what_company(update, context):
-    if BD.check_company(update.message.text):
-        context['company'] = update.message.text
-        update.message.reply_text('какая сообщение')
+    company = update.message.text
+    print(company)
+    if BD.check_company(company):
+        context.user_data['company'] = company
+        update.message.reply_text('Какое сообщение хотите, чтоб отправлялось?')
         return 2
     else:
-        update.message.reply_text('какая компания')
+        update.message.reply_text('Ошибка: компания с таким названием не найдена.')
+        update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить?')
         return 1
 
 
 def get_text_mailing(update, context):
-    context['text'] = update.message.text
-    update.message.reply_text('какая дата')
+    context.user_data['text'] = update.message.text
+    update.message.reply_text('''В какую(-ые) даты отправлять?
+Вводите через запятую с пробелом, в формете день.месяц.год.
+Например: 25.05.2022, 23.02.2023''')
     return 3
 
 
 def get_date_add(update, context):
     date = update.message.text.split(', ')
     for i in date:
-        BD.add_mailing(context['text'], i, context['company'])
-    update.message.reply_text('ок. всё ок')
+        BD.add_mailing(context.user_data['text'], i, context.user_data['company'])
+    update.message.reply_text('Успешно! Уведомления ждут своей отправки.')
     return ConversationHandler.END
 
 
