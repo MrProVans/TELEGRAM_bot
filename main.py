@@ -171,9 +171,54 @@ def delete_company(update, context):
         return
     update.message.reply_text('''Введите название компании, которую 
 хотите удалить. ВНИМАНИЕ: это действие отменить будет невозможно.''')
+    return 1
+
+
+def delete_comp(update, context):
     a = update.message.text
     BD.delete_company(a)
-    update.message.reply_text('компания удалена')
+    update.message.reply_text('Компания удалена.')
+
+
+def helps(update, context):
+    if checking_status(update):
+        update.message.reply_text('помощь админка')
+    else:
+        update.message.reply_text('помощь пользователя')
+
+
+def add_mailing(update, context):
+    update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить?')
+    return 1
+
+
+def what_company(update, context):
+    if BD.check_company(update.message.text):
+        context['company'] = update.message.text
+        update.message.reply_text('какая сообщение')
+        return 2
+    else:
+        update.message.reply_text('какая компания')
+        return 1
+
+
+def get_text_mailing(update, context):
+    context['text'] = update.message.text
+    update.message.reply_text('какая дата')
+    return 3
+
+
+def get_date_add(update, context):
+    date = update.message.text.split(', ')
+    for i in date:
+        BD.add_mailing(context['text'], i, context['company'])
+    update.message.reply_text('ок. всё ок')
+    return ConversationHandler.END
+
+
+def stop_new_mailing(update, context):
+    update.message.reply_text('Добавление функции остановлено.')
+    return ConversationHandler.END
 
 
 def main():  #
@@ -207,6 +252,7 @@ def main():  #
     )
     dp.add_handler(script_linking_company)
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
+    dp.add_handler(CommandHandler("help", helps))
     script_creature_company = ConversationHandler(
         # Точка входа в диалог.
         # В данном случае — команда /start. Она задаёт первый вопрос.
@@ -221,7 +267,34 @@ def main():  #
         fallbacks=[CommandHandler('stop', stop_new_company, pass_user_data=True)]
     )
     dp.add_handler(script_creature_company)
-    dp.add_handler(CommandHandler("delete_company", delete_company))
+
+    script_del_company = ConversationHandler(
+        # Точка входа в диалог.
+        # В данном случае — команда /start. Она задаёт первый вопрос.
+        entry_points=[CommandHandler('delete_company', delete_company, pass_user_data=True)],
+        # Состояние внутри диалога.
+        states={
+            1: [MessageHandler(Filters.text & ~Filters.command, delete_comp, pass_user_data=True)]
+        },
+        # Точка прерывания диалога. В данном случае — команда /stop.
+        fallbacks=[CommandHandler('stop', stop_linking, pass_user_data=True)]
+    )
+    dp.add_handler(script_del_company)
+
+    script_adding_mailing_lists = ConversationHandler(
+        # Точка входа в диалог.
+        # В данном случае — команда /start. Она задаёт первый вопрос.
+        entry_points=[CommandHandler('add_mailing', add_mailing, pass_user_data=True)],
+        # Состояние внутри диалога.
+        states={
+            1: [MessageHandler(Filters.text & ~Filters.command, what_company, pass_user_data=True)],
+            2: [MessageHandler(Filters.text & ~Filters.command, get_text_mailing, pass_user_data=True)],
+            3: [MessageHandler(Filters.text & ~Filters.command, get_date_add, pass_user_data=True)]
+        },
+        # Точка прерывания диалога. В данном случае — команда /stop.
+        fallbacks=[CommandHandler('stop', stop_new_mailing, pass_user_data=True)]
+    )
+    dp.add_handler(script_adding_mailing_lists)
 
     # самый низ
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, get_question))

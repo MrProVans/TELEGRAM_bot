@@ -143,7 +143,7 @@ class DB:
 # print(bd.get_user_post('1234wer'))
 # bd.add_company('a', 'b', 'c')
 # bd.add_user('a', 'b', 'c', 1, '1234wer')
-# bd.delete_company('a')
+# bd.delete_company('A')
 # bd.add_mailing('b', '15.04.2022', 'A')
 # print(bd.check_mailing('a', '01.01.01', 'A'))
 # bd.delete_mailing('a', '01.01.01', 'A')
@@ -160,3 +160,4 @@ class DB:
 # print(bd.get_answer('a3', 'Comp'))
 # print(bd.get_ids('A'))
 # print(bd.get_mailings())
+
