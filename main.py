@@ -21,20 +21,20 @@ BD = DB()
 def start(update, context):  # старт
     update.message.reply_text('''Здравствуйте! Я смогу ответить на возникшие у Вас вопросы,
 но для начала нужно пройти регистрацию. Напишите, пожалуйста, Вашу роль.
-Например: Klient''')
+Например: Klient или Клиент''')
     return 1
 
 
 def info(update, context):  # функция уточнения положения
     a = update.message.text
     logger.info(' '.join([a, 'Admin', str(a == 'Admin')]))
-    if a == 'Admin':
+    if a == 'Admin' or a == 'Админ':
         context.user_data['Post'] = 1
         update.message.reply_text('''Для того чтобы стать администратором,
 нужно ввести выданный Вам пароль:
 Например: 0000''')
         return 2
-    elif a == 'Klient':
+    elif a == 'Klient' or a == 'Клиент':
         context.user_data['Post'] = 0
         update.message.reply_text('''Готов произвести регистрацию.
 Введите Ваше ФИО через пробел.
@@ -68,6 +68,7 @@ def entering_info(update, context):  # добавление ФИО
     a = update.message.text
     context.user_data['ФИО'] = a
     # добавление пользователя
+
     fio = context.user_data['ФИО'].split()
     logger.info(str(fio) + str(context.user_data['Post']))
     BD.add_user(fio[0], fio[1], fio[2], context.user_data['Post'], str(update.message.from_user.id))
@@ -130,7 +131,6 @@ def unbinding_company(update, context):
 
 def get_question(update, context):
     company = BD.get_user_company(str(update.message.from_user.id))
-    print(company)
     if company == None:
         if BD.get_user_post(str(update.message.from_user.id)) == 0:
             update.message.reply_text('Вы не можете получить ответ, так как не состоите в компании.')
@@ -371,7 +371,8 @@ def main():  #
             3: [MessageHandler(Filters.text & ~Filters.command, entering_info, pass_user_data=True)]
         },
         # Точка прерывания диалога. В данном случае — команда /stop.
-        fallbacks=[CommandHandler('stop', stop_reg, pass_user_data=True)]
+        fallbacks=[CommandHandler('stop', stop_reg, pass_user_data=True)],
+        allow_reentry=False
     )
     dp.add_handler(script_registration)
     script_linking_company = ConversationHandler(
