@@ -122,16 +122,17 @@ class DB:
         return [(x[0], self.get_ids(x[1])) for x in self.con.cursor().execute(f'''SELECT text, company FROM Mailings
                 WHERE date = \'{day}\'''').fetchall()]
 
-    def get_user_post(self, id_tg):
+    def get_user_post(self, id_tg):  # получение должности пользователя
         return self.con.cursor().execute(f'''SELECT post FROM Users
                  WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
-    def get_user_company(self, id_tg):
+    def get_user_company(self, id_tg):  # получение компании, в которой пользователь
         return self.con.cursor().execute(f'''SELECT company FROM Users
                  WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
-bd = DB()
-print(bd.get_user_company('1234wer'))
+
+# bd = DB()
+# print(bd.get_user_company('1234wer'))
 # print(bd.get_user_post('1234wer'))
 # bd.add_company('a', 'b', 'c')
 # bd.add_user('a', 'b', 'c', 1, '1234wer')
