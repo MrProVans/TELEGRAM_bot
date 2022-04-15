@@ -1,7 +1,9 @@
 import logging
+import threading
 import time
 
 import schedule
+import telegram.ext
 from telegram.ext import Updater, MessageHandler, Filters, ConversationHandler
 from telegram.ext import CommandHandler
 from for_DBwork import DB
@@ -335,19 +337,27 @@ def write_question_del(update, context):
     return ConversationHandler.END
 
 
-def send_messange(update, context):
+def send_messange(dp):
     list_of_messanges = BD.get_mailings()
     for mailing in list_of_messanges:
         text, ids = mailing
         for id_ in ids:
-            context.bot.sendMessage(chat_id=id_, text=text)
+            telegram.ext.CallbackContext(dp).bot.sendMessage(chat_id=id_, text=text)
+
+
+def thr():
+    while True:
+        schedule.run_pending()
 
 
 def main():  #
-    # schedule.every(10).second.do(send_messange)
-
     updater = Updater(TOKEN)
     dp = updater.dispatcher
+
+    # schedule.every(2).seconds.do(send_messange, dp)
+    schedule.every().day.at("12:00").do(send_messange, dp)
+    threading.Thread(target=thr).start()
+
     script_registration = ConversationHandler(
         # Точка входа в диалог.
         # В данном случае — команда /start. Она задаёт первый вопрос.
@@ -378,7 +388,7 @@ def main():  #
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
     dp.add_handler(CommandHandler("help", helps))
     dp.add_handler(CommandHandler('all_question', all_question))
-    dp.add_handler(CommandHandler("send_messange", send_messange))
+    # dp.add_handler(CommandHandler("send_messange", send_messange))
     script_creature_company = ConversationHandler(
         # Точка входа в диалог.
         # В данном случае — команда /start. Она задаёт первый вопрос.
