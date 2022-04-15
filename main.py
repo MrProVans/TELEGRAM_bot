@@ -1,4 +1,7 @@
 import logging
+import time
+
+import schedule
 from telegram.ext import Updater, MessageHandler, Filters, ConversationHandler
 from telegram.ext import CommandHandler
 from for_DBwork import DB
@@ -126,6 +129,7 @@ def unbinding_company(update, context):
 
 def get_question(update, context):
     company = BD.get_user_company(str(update.message.from_user.id))
+    print(company)
     if company == None:
         if BD.get_user_post(str(update.message.from_user.id)) == 0:
             update.message.reply_text('Вы не можете получить ответ, так как не состоите в компании.')
@@ -133,7 +137,10 @@ def get_question(update, context):
             update.message.reply_text('''Вы - администратор! Уверен, ответы на
 все интересующие вопросы Вы знаете сами)''')
     else:
-        update.message.reply_text(str(BD.get_answer(update.message.text, company)))
+        if update.message.text in list(map(lambda i: i[1][0], BD.get_questions(company))):
+            update.message.reply_text(str(BD.get_answer(update.message.text, company)))
+        else:
+            update.message.reply_text('Извините, вопрос не найден.')
 
 
 def input_name_company(update, context):
@@ -193,10 +200,17 @@ def helps(update, context):
                                   'пароль, номер телефона.\n '
                                   '/delete_company используется для удаления уже существующей компании. Для удаления '
                                   'необходимо только название.\n '
-                                  '/add_mailing используется для создания новой рассылки. Для её создания необходимы \n'
-                                  '/delete_mailing используется для удаления рассылки.\n'
-                                  '/add_question используется для создания нового вопроса.\n'
-                                  '/delete_question используется для удаления вопроса.\n')
+                                  '/add_mailing используется для создания новой рассылки. Для её создания необходимо '
+                                  'несколько элементов: компания, текст, даты отправления.\n '
+                                  '/delete_mailing используется для удаления рассылки. Для её удаления необходимо '
+                                  'несколько элементов: компания, текст, дата отправления.\n'
+                                  '/add_question используется для создания нового вопроса. Для его создания необходимо '
+                                  'несколько элементов: компания, текст вопроса, текст ответа.\n'
+                                  '/redact_question используется для редактирования существующего вопроса. Для его '
+                                  'редактирования необходимо'
+                                  'несколько элементов: компания, текст вопроса, изменённый текст ответа.\n'
+                                  '/delete_question используется для удаления вопроса. Для его удаления необходимо '
+                                  'несколько элементов: компания, текст вопроса, текст ответа.\n')
     else:
         update.message.reply_text('Привет, уважаемый пользователь.\n'
                                   '/stop используется для остановки любого процесса, в котором вы не находились.\n'
@@ -231,6 +245,14 @@ def get_text_mailing(update, context):
 Вводите через запятую с пробелом, в формете день.месяц.год.
 Например: 25.05.2022, 23.02.2023''')
     return 3
+
+
+def all_question(update, context):
+    company = BD.get_user_company(str(update.message.from_user.id))
+    print(company)
+    a = BD.get_questions(company)
+    print(a)
+    update.message.reply_text('\n'.join([str(x[0] + 1) + '. ' + x[1][0] for x in a]))
 
 
 def get_date_add(update, context):
@@ -315,14 +337,15 @@ def write_question_del(update, context):
 
 def send_messange(update, context):
     list_of_messanges = BD.get_mailings()
-    print(list_of_messanges)
     for mailing in list_of_messanges:
         text, ids = mailing
         for id_ in ids:
-            print(text, id_)
+            context.bot.sendMessage(chat_id=id_, text=text)
 
 
 def main():  #
+    # schedule.every(10).second.do(send_messange)
+
     updater = Updater(TOKEN)
     dp = updater.dispatcher
     script_registration = ConversationHandler(
@@ -354,6 +377,7 @@ def main():  #
     dp.add_handler(script_linking_company)
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
     dp.add_handler(CommandHandler("help", helps))
+    dp.add_handler(CommandHandler('all_question', all_question))
     dp.add_handler(CommandHandler("send_messange", send_messange))
     script_creature_company = ConversationHandler(
         # Точка входа в диалог.

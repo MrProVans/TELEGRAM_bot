@@ -86,9 +86,8 @@ class DB:
         self.con.commit()
 
     def get_questions(self, company):  # получение всех вопросов для данной компании
-        return '\n'.join([str(x[0] + 1) + '. ' + x[1][0]
-                          for x in enumerate(self.con.cursor().execute(f'''SELECT text_q FROM Questions
-         WHERE company = \'{company}\'''').fetchall())])
+        return [x for x in enumerate(self.con.cursor().execute(f'''SELECT text_q FROM Questions
+         WHERE company = \'{company}\'''').fetchall())]
 
     def get_company_password(self, company):  # получение пароля для клиентов компании
         return self.con.cursor().execute(f'''SELECT password_cl FROM Companies
@@ -152,7 +151,7 @@ class DB:
 # bd.redact_question('a', 'b', 'c')
 # bd.delete_question('a', 'b', 'c')
 # print(bd.check_question('a', 'c'))
-# print(bd.get_questions('Comp'))
+# print(bd.get_questions('Фантом Десятой'))
 # print(bd.get_company_password('a'))
 # print(bd.check_company('a'))
 # bd.remove_user_company('1234wer', 'A')
