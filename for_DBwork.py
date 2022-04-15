@@ -4,7 +4,7 @@ import sqlite3
 
 class DB:
     def __init__(self):
-        self.con = sqlite3.connect('db_For_TGbot.sqlite')
+        self.con = sqlite3.connect('db_For_TGbot.sqlite', check_same_thread=False)
 
     def add_user(self, surname, name, patronymic, post, id_tg):  # добавление пользователя
         self.con.cursor().execute(f'''INSERT INTO Users(surname, name, patronymic, post, id_tg)
@@ -122,8 +122,13 @@ class DB:
         return [(x[0], self.get_ids(x[1])) for x in self.con.cursor().execute(f'''SELECT text, company FROM Mailings
                 WHERE date = \'{day}\'''').fetchall()]
 
+    def get_user_post(self, id_tg):
+        return self.con.cursor().execute(f'''SELECT post FROM Users
+                 WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
-# bd = DB()
+
+bd = DB()
+# print(bd.get_user_post('1234wer'))
 # bd.add_company('a', 'b', 'c')
 # bd.add_user('a', 'b', 'c', 1, '1234wer')
 # bd.delete_company('a')
