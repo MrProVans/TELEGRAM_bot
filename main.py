@@ -214,7 +214,7 @@ def helps(update, context):
                                   'несколько элементов: компания, текст вопроса, текст ответа.\n')
     else:
         update.message.reply_text('Привет, уважаемый пользователь.\n'
-                                  '/stop используется для остановки любого процесса, в котором вы не находились.\n'
+                                  '/stop используется для остановки любого процесса, в котором вы находитесь.\n'
                                   '/reg_company используется для регистрации в какой-либо компании.\n'
                                   '/unbinding используется для отключения вас от вашей компании\n'
                                   '/all_question при вызове возвращаются все вопросы, реализованные для вашей '
@@ -253,7 +253,10 @@ def all_question(update, context):
     print(company)
     a = BD.get_questions(company)
     print(a)
-    update.message.reply_text('\n'.join([str(x[0] + 1) + '. ' + x[1][0] for x in a]))
+    if a:
+        update.message.reply_text('\n'.join([str(x[0] + 1) + '. ' + x[1][0] for x in a]))
+    else:
+        update.message.reply_text('Для Вашей компании не реализованны вопросы.')
 
 
 def get_date_add(update, context):
