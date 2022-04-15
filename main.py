@@ -15,8 +15,9 @@ BD = DB()
 
 
 def start(update, context):  #
-    update.message.reply_text('Старт')
-    update.message.reply_text('кто ты')
+    update.message.reply_text('''Здравствуйте! Я смогу ответить на возникшие у Вас вопросы,
+но для начала нужно пройти регистрацию. Напишите, пожалуйста, Вашу 
+Например: Иванов Иван Иванович''')
     return 1
 
 
