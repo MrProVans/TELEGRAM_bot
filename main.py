@@ -193,7 +193,7 @@ def helps(update, context):
 
 
 def add_mailing(update, context):
-    update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить?')
+    update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить/удалить?')
     return 1
 
 
@@ -202,17 +202,17 @@ def what_company(update, context):
     print(company)
     if BD.check_company(company):
         context.user_data['company'] = company
-        update.message.reply_text('Какое сообщение хотите, чтоб отправлялось?')
+        update.message.reply_text('Какое сообщение хотите, чтоб отправлялось/удалялось?')
         return 2
     else:
         update.message.reply_text('Ошибка: компания с таким названием не найдена.')
-        update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить?')
+        update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить/удалить?')
         return 1
 
 
 def get_text_mailing(update, context):
     context.user_data['text'] = update.message.text
-    update.message.reply_text('''В какую(-ые) даты отправлять?
+    update.message.reply_text('''В какую(-ые) даты отправлять или уведомления в какую дату удалить? 
 Вводите через запятую с пробелом, в формете день.месяц.год.
 Например: 25.05.2022, 23.02.2023''')
     return 3
@@ -228,6 +228,62 @@ def get_date_add(update, context):
 
 def stop_new_mailing(update, context):
     update.message.reply_text('Добавление функции остановлено.')
+    return ConversationHandler.END
+
+
+def get_date_del(update, context):
+    date = update.message.text.split(', ')
+    for i in date:
+        BD.delete_mailing(context.user_data['text'], i, context.user_data['company'])
+    update.message.reply_text('Успешно! Дата удалена.')
+    return ConversationHandler.END
+
+
+def stop_del_mailing(update, context):
+    update.message.reply_text('Удаление рассылки остановлено.')
+    return ConversationHandler.END
+
+
+def add_question(update, context):
+    update.message.reply_text('Введите вопрос, который нужно добавить/редактировать/удалить.')
+    return 1
+
+
+def add_answer(update, context):
+    context.user_data['question'] = update.message.text
+    update.message.reply_text('Введите ответ на вопрос.')
+    return 2
+
+
+def creating_question(update, context):
+    context.user_data['answer'] = update.message.text
+    update.message.reply_text('Введите компанию, участники которой могут задать вопрос.')
+    return 3
+
+
+def stop_question_add(update, context):
+    update.message.reply_text('Добавление/реадктирование/удаление вопроса остановлено.')
+    return ConversationHandler.END
+
+
+def write_question_add(update, context):
+    a = update.message.text
+    print(context.user_data['question'], context.user_data['answer'], a)
+    BD.add_question(context.user_data['question'], context.user_data['answer'], a)
+
+    update.message.reply_text('Вопрос добавлен.')
+    return ConversationHandler.END
+
+
+def write_question_red(update, context):
+    BD.redact_question(context.user_data['question'], context.user_data['answer'], update.message.text)
+    update.message.reply_text('Вопрос изменен.')
+    return ConversationHandler.END
+
+
+def write_question_del(update, context):
+    BD.delete_question(context.user_data['question'], context.user_data['answer'], update.message.text)
+    update.message.reply_text('Вопрос удален.')
     return ConversationHandler.END
 
 
@@ -305,6 +361,66 @@ def main():  #
         fallbacks=[CommandHandler('stop', stop_new_mailing, pass_user_data=True)]
     )
     dp.add_handler(script_adding_mailing_lists)
+
+    script_del_mailing_lists = ConversationHandler(
+        # Точка входа в диалог.
+        # В данном случае — команда /start. Она задаёт первый вопрос.
+        entry_points=[CommandHandler('delete_mailing', add_mailing, pass_user_data=True)],
+        # Состояние внутри диалога.
+        states={
+            1: [MessageHandler(Filters.text & ~Filters.command, what_company, pass_user_data=True)],
+            2: [MessageHandler(Filters.text & ~Filters.command, get_text_mailing, pass_user_data=True)],
+            3: [MessageHandler(Filters.text & ~Filters.command, get_date_del, pass_user_data=True)]
+        },
+        # Точка прерывания диалога. В данном случае — команда /stop.
+        fallbacks=[CommandHandler('stop', stop_del_mailing, pass_user_data=True)]
+    )
+    dp.add_handler(script_del_mailing_lists)
+
+    script_add_question_lists = ConversationHandler(
+        # Точка входа в диалог.
+        # В данном случае — команда /start. Она задаёт первый вопрос.
+        entry_points=[CommandHandler('add_question', add_question, pass_user_data=True)],
+        # Состояние внутри диалога.
+        states={
+            1: [MessageHandler(Filters.text & ~Filters.command, add_answer, pass_user_data=True)],
+            2: [MessageHandler(Filters.text & ~Filters.command, creating_question, pass_user_data=True)],
+            3: [[MessageHandler(Filters.text & ~Filters.command, write_question_add, pass_user_data=True)]]
+        },
+        # Точка прерывания диалога. В данном случае — команда /stop.
+        fallbacks=[CommandHandler('stop', stop_question_add, pass_user_data=True)]
+    )
+    dp.add_handler(script_add_question_lists)
+
+    script_del_question_lists = ConversationHandler(
+        # Точка входа в диалог.
+        # В данном случае — команда /start. Она задаёт первый вопрос.
+        entry_points=[CommandHandler('delete_question', add_question, pass_user_data=True)],
+        # Состояние внутри диалога.
+        states={
+            1: [MessageHandler(Filters.text & ~Filters.command, add_answer, pass_user_data=True)],
+            2: [MessageHandler(Filters.text & ~Filters.command, creating_question, pass_user_data=True)],
+            3: [[MessageHandler(Filters.text & ~Filters.command, write_question_del, pass_user_data=True)]]
+        },
+        # Точка прерывания диалога. В данном случае — команда /stop.
+        fallbacks=[CommandHandler('stop', stop_question_add, pass_user_data=True)]
+    )
+    dp.add_handler(script_del_question_lists)
+
+    script_red_question_lists = ConversationHandler(
+        # Точка входа в диалог.
+        # В данном случае — команда /start. Она задаёт первый вопрос.
+        entry_points=[CommandHandler('redact_question', add_question, pass_user_data=True)],
+        # Состояние внутри диалога.
+        states={
+            1: [MessageHandler(Filters.text & ~Filters.command, add_answer, pass_user_data=True)],
+            2: [MessageHandler(Filters.text & ~Filters.command, creating_question, pass_user_data=True)],
+            3: [[MessageHandler(Filters.text & ~Filters.command, write_question_red, pass_user_data=True)]]
+        },
+        # Точка прерывания диалога. В данном случае — команда /stop.
+        fallbacks=[CommandHandler('stop', stop_question_add, pass_user_data=True)]
+    )
+    dp.add_handler(script_red_question_lists)
 
     # самый низ
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, get_question))
