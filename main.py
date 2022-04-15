@@ -208,7 +208,6 @@ def helps(update, context):
                                   'Все остальное бот будет принимать как вопрос, заданный вами.')
 
 
-
 def add_mailing(update, context):
     update.message.reply_text('Уведомления для пользователей какой компании Вы хотите добавить/удалить?')
     return 1
@@ -285,7 +284,6 @@ def stop_question_add(update, context):
 
 def write_question_add(update, context):
     a = update.message.text
-    print(context.user_data['question'], context.user_data['answer'], a)
     BD.add_question(context.user_data['question'], context.user_data['answer'], a)
 
     update.message.reply_text('Вопрос добавлен.')
@@ -293,13 +291,25 @@ def write_question_add(update, context):
 
 
 def write_question_red(update, context):
-    BD.redact_question(context.user_data['question'], context.user_data['answer'], update.message.text)
+    context.user_data['company'] = update.message.text
+    if BD.check_question(context.user_data['question'], context.user_data['company']):
+        BD.redact_question(context.user_data['question'], context.user_data['answer'], update.message.text)
+    else:
+        update.message.reply_text('Ошибка: данного вопроса у данной компании не существует.')
+        update.message.reply_text('Введите вопрос, который нужно добавить/редактировать/удалить.')
+        return 1
     update.message.reply_text('Вопрос изменен.')
     return ConversationHandler.END
 
 
 def write_question_del(update, context):
-    BD.delete_question(context.user_data['question'], context.user_data['answer'], update.message.text)
+    context.user_data['company'] = update.message.text
+    if BD.check_question_all(context.user_data['question'], context.user_data['answer'], context.user_data['company']):
+        BD.delete_question(context.user_data['question'], context.user_data['answer'], context.user_data['company'])
+    else:
+        update.message.reply_text('Ошибка: вопроса с такими характеристиками не существует.')
+        update.message.reply_text('Введите вопрос, который нужно добавить/редактировать/удалить.')
+        return 1
     update.message.reply_text('Вопрос удален.')
     return ConversationHandler.END
 
@@ -402,7 +412,7 @@ def main():  #
         states={
             1: [MessageHandler(Filters.text & ~Filters.command, add_answer, pass_user_data=True)],
             2: [MessageHandler(Filters.text & ~Filters.command, creating_question, pass_user_data=True)],
-            3: [[MessageHandler(Filters.text & ~Filters.command, write_question_add, pass_user_data=True)]]
+            3: [MessageHandler(Filters.text & ~Filters.command, write_question_add, pass_user_data=True)]
         },
         # Точка прерывания диалога. В данном случае — команда /stop.
         fallbacks=[CommandHandler('stop', stop_question_add, pass_user_data=True)]
@@ -417,7 +427,7 @@ def main():  #
         states={
             1: [MessageHandler(Filters.text & ~Filters.command, add_answer, pass_user_data=True)],
             2: [MessageHandler(Filters.text & ~Filters.command, creating_question, pass_user_data=True)],
-            3: [[MessageHandler(Filters.text & ~Filters.command, write_question_del, pass_user_data=True)]]
+            3: [MessageHandler(Filters.text & ~Filters.command, write_question_del, pass_user_data=True)]
         },
         # Точка прерывания диалога. В данном случае — команда /stop.
         fallbacks=[CommandHandler('stop', stop_question_add, pass_user_data=True)]
@@ -432,7 +442,7 @@ def main():  #
         states={
             1: [MessageHandler(Filters.text & ~Filters.command, add_answer, pass_user_data=True)],
             2: [MessageHandler(Filters.text & ~Filters.command, creating_question, pass_user_data=True)],
-            3: [[MessageHandler(Filters.text & ~Filters.command, write_question_red, pass_user_data=True)]]
+            3: [MessageHandler(Filters.text & ~Filters.command, write_question_red, pass_user_data=True)]
         },
         # Точка прерывания диалога. В данном случае — команда /stop.
         fallbacks=[CommandHandler('stop', stop_question_add, pass_user_data=True)]
