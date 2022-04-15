@@ -19,6 +19,13 @@ class DB:
     def delete_company(self, title):  # удаление компании
         self.con.cursor().execute(f'''DELETE from Companies 
         WHERE title = \'{title}\'''')
+        self.con.cursor().execute(f'''DELETE from Mailings
+                WHERE company = \'{title}\'''')
+        self.con.cursor().execute(f'''DELETE from Questions
+                WHERE company = \'{title}\'''')
+        self.con.cursor().execute(f'''UPDATE Users
+                SET company = ''
+                WHERE company = \'{title}\'''')
         self.con.commit()
 
     def check_mailing(self, text, date, company):  # проверка наличия уведомления

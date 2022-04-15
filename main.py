@@ -14,10 +14,10 @@ SUPER_PASSWORD = '0000'
 BD = DB()
 
 
-def start(update, context):  #
+def start(update, context):  # старт
     update.message.reply_text('''Здравствуйте! Я смогу ответить на возникшие у Вас вопросы,
 но для начала нужно пройти регистрацию. Напишите, пожалуйста, Вашу роль.
-Например: Иванов Иван Иванович''')
+Например: Klient''')
     return 1
 
 
@@ -26,16 +26,20 @@ def info(update, context):  # функция уточнения положени
     logger.info(' '.join([a, 'Admin', str(a == 'Admin')]))
     if a == 'Admin':
         context.user_data['Post'] = 1
-        update.message.reply_text('пароль')
+        update.message.reply_text('''Для того чтобы стать администратором,
+нужно ввести выданный Вам пароль:
+Например: 0000''')
         return 2
-    else:
+    elif a == 'Klient':
         context.user_data['Post'] = 0
-        update.message.reply_text('ФИО')
+        update.message.reply_text('''Готов произвести регистрацию.
+Введите Ваше ФИО через пробел.
+Например: Иванов Иван Иванович''')
         return 3
 
 
 def stop_reg(update, context):  # функция внезапной остановки
-    update.message.reply_text('остановка')
+    update.message.reply_text('Регистрация приостановлена.')
     context.user_data.clear()
     return ConversationHandler.END
 
@@ -44,11 +48,15 @@ def password_request(update, context):  # функция проверки суп
     a = update.message.text
     logger.info(' '.join([a, SUPER_PASSWORD, str(a == SUPER_PASSWORD)]))
     if a == SUPER_PASSWORD:
-        update.message.reply_text('ФИО')
+        update.message.reply_text('''Готов произвести регистрацию.
+Введите Ваше ФИО через пробел.
+Например: Иванов Иван Иванович''')
         return 3
     else:
         context.user_data.clear()
-        update.message.reply_text('кто ты')
+        update.message.reply_text('''Здравствуйте! Я смогу ответить на возникшие у Вас вопросы,
+но для начала нужно пройти регистрацию. Напишите, пожалуйста, Вашу роль.
+Например: Klient''')
         return 1
 
 
@@ -66,92 +74,105 @@ def entering_info(update, context):  # добавление ФИО
 
 
 def reg_in_company(update, context):
-    update.message.reply_text('Здравствуйте,  вступиnt в команду. Для этого используйте \\reg_company')
+    update.message.reply_text('''Теперь вы можете вступить в компанию.
+Для этого напишите или нажмите на /reg_company''')
 
 
 def linking_company(update, context):
-    logger.info('fghj')
-    update.message.reply_text('команда')
-    context.user_data['NameCompany'] = update.message.text
+    logger.info('привязка к компании')
+    update.message.reply_text('''Введите название компании, в которую хотите вступить.''')
     return 1
 
 
 def get_name_company_password(update, context):
-    a = BD.get_company_password(update.message.text)
-    if a is None:
-        update.message.reply_text('ещё раз')
-        update.message.reply_text('команда')
+    name_company = update.message.text
+    context.user_data['NameCompany'] = name_company
+    a = BD.check_company(name_company)
+    if not a:
+        update.message.reply_text('''Произошла ошибка: Компании с таким
+названием не существует.
+Проверьте введенные данные.''')
+        update.message.reply_text('''Введите название компании, в которую хотите вступить.''')
         return 1
-    context.user_data['NameCompany'] = update.message.text
-    context.user_data['password'] = a
+    context.user_data['PasswordCompany'] = BD.get_company_password(context.user_data['NameCompany'])
+    update.message.reply_text('Компания найдена. Введите пароль.')
     return 2
 
 
 def get_pass(update, context):
-    update.message.reply_text('пароль')
-    if context.user_data['NameCompany'] != update.message.text:
-        update.message.reply_text('ещё раз')
-        update.message.reply_text('команда')
+    if context.user_data['PasswordCompany'] != update.message.text:
+        update.message.reply_text('Возникла ошибка: введен неверный пароль.')
+        update.message.reply_text('Компания найдена. Введите пароль.')
         return 1
-    update.message.from_user.id  # нужный шв
+    BD.remove_user_company(str(update.message.from_user.id), context.user_data['NameCompany'])
+    update.message.reply_text('Вы успешно вступили компанию.')
     return ConversationHandler.END
 
 
 def stop_linking(update, context):
-    update.message.reply_text('Здравствуйте, в команду. Для этого используйте \\reg_company')
+    update.message.reply_text('''Теперь Вы можете вступить в компанию.
+Для этого напишите или нажмите на /reg_company''')
     return ConversationHandler.END
 
 
 def checking_status(update):
-    return False if BD.checking_status(update.message.from_user.id) == 0 else True
+    return False if BD.get_user_post(update.message.from_user.id) == 0 else True
 
 
 def unbinding_company(update, context):
-    # отвязка по конкретному шв
-    pass
+    BD.remove_user_company(str(update.message.from_user.id), '')
+    update.message.reply_text('Вы вышли из компании.')
 
 
 def get_question(update, context):
-    # отпрвляется шв по нему находится компания, по ней ищется вопрос + проверка компании
-    pass
+    company = BD.get_user_company(str(update.message.from_user.id))
+    if company in None:
+        update.message.reply_text('Вы не можете получить ответ, так как не состоите в компании.')
+    else:
+        update.message.reply_text(str(BD.get_answer(update.message.text, company)))
 
 
-def get_name_company(update, context):
+def input_name_company(update, context):
     if not checking_status(update):
-        update.message.reply_text('у вас нет прав')
+        update.message.reply_text('Для создания компании вы должны быть администратором.')
         return ConversationHandler.END
-    update.message.reply_text('имя')
-
+    update.message.reply_text('Введите будущее название компании.')
     return 1
 
 
-def password_company(update, context):
+def input_password_company(update, context):
     context.user_data['title'] = update.message.text
-    update.message.reply_text('пароль')
+    update.message.reply_text('Введите пароль компании для входа пользователей.')
 
     return 2
 
 
-def get_telephone(update, context):
+def input_get_telephone(update, context):
     context.user_data['password'] = update.message.text
-    update.message.reply_text('телефон')
+    update.message.reply_text('Введите контактный телефон владельца компании (Ваш).')
     return 3
 
 
 def creating_company(update, context):
     BD.add_company(context.user_data['title'], update.message.text, context.user_data['password'])
-    update.message.reply_text('Компания создана')
+    update.message.reply_text('Успешно! Компания создана, а Вы её администратор.')
+    context.user_data.clear()
     return ConversationHandler.END
 
 
 def stop_new_company(update, context):
-    update.message.reply_text('остановка фвв')
+    update.message.reply_text('Остановка создания компании.')
     return ConversationHandler.END
 
 
 def delete_company(update, context):
-    update.message.reply_text('введите название')
-    BD.delete_company(update.message.text)
+    if not checking_status(update):
+        update.message.reply_text('Для создания компании вы должны быть администратором.')
+        return
+    update.message.reply_text('''Введите название компании, которую 
+хотите удалить. ВНИМАНИЕ: это действие отменить будет невозможно.''')
+    a = update.message.text
+    BD.delete_company(a)
     update.message.reply_text('компания удалена')
 
 
@@ -189,11 +210,11 @@ def main():  #
     script_creature_company = ConversationHandler(
         # Точка входа в диалог.
         # В данном случае — команда /start. Она задаёт первый вопрос.
-        entry_points=[CommandHandler('creating_company', get_name_company, pass_user_data=True)],
+        entry_points=[CommandHandler('creating_company', input_name_company, pass_user_data=True)],
         # Состояние внутри диалога.
         states={
-            1: [MessageHandler(Filters.text & ~Filters.command, password_company, pass_user_data=True)],
-            2: [MessageHandler(Filters.text & ~Filters.command, get_telephone, pass_user_data=True)],
+            1: [MessageHandler(Filters.text & ~Filters.command, input_password_company, pass_user_data=True)],
+            2: [MessageHandler(Filters.text & ~Filters.command, input_get_telephone, pass_user_data=True)],
             3: [MessageHandler(Filters.text & ~Filters.command, creating_company, pass_user_data=True)]
         },
         # Точка прерывания диалога. В данном случае — команда /stop.
