@@ -6,17 +6,20 @@ class DB:
     def __init__(self):
         self.con = sqlite3.connect('db_For_TGbot.sqlite', check_same_thread=False)
 
-    def add_user(self, surname, name, patronymic, post, id_tg):  # добавление пользователя
+    def add_user(self, surname, name, patronymic, post, id_tg):
+        """ добавление пользователя """
         self.con.cursor().execute(f'''INSERT INTO Users(surname, name, patronymic, post, id_tg)
          VALUES ('{surname}', '{name}', '{patronymic}', {post}, '{id_tg}')''')
         self.con.commit()
 
-    def add_company(self, title, phone, password):  # добавление компании
+    def add_company(self, title, phone, password):
+        """ добавление компании """
         self.con.cursor().execute(f'''INSERT INTO Companies(title, number_phone, password_cl)
          VALUES ('{title}', '{phone}', '{password}')''')
         self.con.commit()
 
-    def delete_company(self, title):  # удаление компании
+    def delete_company(self, title):
+        """ удаление компании """
         self.con.cursor().execute(f'''DELETE from Companies 
         WHERE title = \'{title}\'''')
         self.con.cursor().execute(f'''DELETE from Mailings
@@ -28,7 +31,8 @@ class DB:
                 WHERE company = \'{title}\'''')
         self.con.commit()
 
-    def check_mailing(self, text, date, company):  # проверка наличия уведомления
+    def check_mailing(self, text, date, company):
+        """ проверка наличия уведомления """
         if self.con.cursor().execute(f'''SELECT count(*) FROM Mailings
          WHERE text = '{text}' AND
           date = '{date}' AND
@@ -37,19 +41,22 @@ class DB:
         else:
             return False
 
-    def add_mailing(self, text, date, company):  # добавление уведомления
+    def add_mailing(self, text, date, company):
+        """ добавление уведомления """
         self.con.cursor().execute(f'''INSERT INTO Mailings(text, date, company)
          VALUES ('{text}', '{date}', '{company}')''')
         self.con.commit()
 
-    def delete_mailing(self, text, date, company):  # удаление уведомления
+    def delete_mailing(self, text, date, company):
+        """ удаление уведомления """
         self.con.cursor().execute(f'''DELETE from Mailings 
         WHERE text = '{text}' AND
           date = '{date}' AND
            company = \'{company}\'''')
         self.con.commit()
 
-    def check_question_all(self, text_q, text_a, company):  # проверка вопроса на полную уникальность
+    def check_question_all(self, text_q, text_a, company):
+        """ проверка вопроса на полную уникальность """
         if self.con.cursor().execute(f'''SELECT count(*) FROM Questions
          WHERE text_q = '{text_q}' AND
           text_a = '{text_a}' AND
@@ -58,12 +65,14 @@ class DB:
         else:
             return False
 
-    def add_question(self, text_q, text_a, company):  # добавление вопроса
+    def add_question(self, text_q, text_a, company):
+        """ добавление вопроса """
         self.con.cursor().execute(f'''INSERT INTO Questions(text_q, text_a, company)
                  VALUES ('{text_q}', '{text_a}', '{company}')''')
         self.con.commit()
 
-    def check_question(self, text_q, company):  # проверка вопроса на существование
+    def check_question(self, text_q, company):
+        """ проверка вопроса на существование """
         if self.con.cursor().execute(f'''SELECT count(*) FROM Questions
          WHERE text_q = '{text_q}' AND
            company = \'{company}\'''').fetchall()[0][0] != 0:
@@ -71,21 +80,24 @@ class DB:
         else:
             return False
 
-    def redact_question(self, text_q, text_a, company):  # редактирование вопроса
+    def redact_question(self, text_q, text_a, company):
+        """ редактирование вопроса """
         self.con.cursor().execute(f'''UPDATE Questions
         SET text_a = '{text_a}'
          WHERE text_q = '{text_q}' AND
            company = \'{company}\'''')
         self.con.commit()
 
-    def delete_question(self, text_q, text_a, company):  # удаление вопроса
+    def delete_question(self, text_q, text_a, company):
+        """ удаление вопроса """
         self.con.cursor().execute(f'''DELETE from Questions
                  WHERE text_q = '{text_q}' AND
                   text_a = '{text_a}' AND
                    company = \'{company}\'''')
         self.con.commit()
 
-    def get_questions(self, company):  # получение всех вопросов для данной компании
+    def get_questions(self, company):
+        """ получение всех вопросов для данной компании """
         return [x for x in enumerate(self.con.cursor().execute(f'''SELECT text_q FROM Questions
          WHERE company = \'{company}\'''').fetchall())]
 
