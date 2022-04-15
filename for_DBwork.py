@@ -2,9 +2,50 @@ from datetime import datetime
 import sqlite3
 
 
-class DB:
-    def __init__(self):
-        self.con = sqlite3.connect('db_For_TGbot.sqlite', check_same_thread=False)
+class DB:  # Класс для работы с Базой Данных
+    def __init__(self):  # инициализация класса
+        self.con = sqlite3.connect('db_For_TGbot.sqlite', check_same_thread=False)  # подключение БД
+        create_table1 = """CREATE TABLE IF NOT EXISTS Users (
+    id         INTEGER PRIMARY KEY
+                       UNIQUE
+                       NOT NULL,
+    surname    TEXT    NOT NULL,
+    name       TEXT    NOT NULL,
+    patronymic TEXT,
+    post       BOOLEAN NOT NULL,
+    company    TEXT,
+    id_tg      TEXT    NOT NULL
+);"""
+        create_table2 = """CREATE TABLE IF NOT EXISTS Questions (
+    id      INTEGER PRIMARY KEY
+                    UNIQUE
+                    NOT NULL,
+    text_q  TEXT    NOT NULL,
+    text_a  TEXT    NOT NULL,
+    company TEXT    NOT NULL
+);"""
+        create_table3 = """CREATE TABLE IF NOT EXISTS Mailings (
+    id      INTEGER PRIMARY KEY
+                    UNIQUE
+                    NOT NULL,
+    text    TEXT    NOT NULL,
+    date    TEXT    NOT NULL,
+    company TEXT    NOT NULL
+);"""
+        create_table4 = """CREATE TABLE IF NOT EXISTS Companies (
+    id           INTEGER PRIMARY KEY
+                         UNIQUE
+                         NOT NULL,
+    title        TEXT    NOT NULL
+                         UNIQUE,
+    number_phone TEXT,
+    password_cl  TEXT    NOT NULL
+);"""
+        self.con.cursor().execute(create_table1)  # создание отсутствующих и необходимых таблиц
+        self.con.cursor().execute(create_table2)
+        self.con.cursor().execute(create_table3)
+        self.con.cursor().execute(create_table4)
+        self.con.commit()
 
     def add_user(self, surname, name, patronymic, post, id_tg):
         """ добавление пользователя """
@@ -101,54 +142,75 @@ class DB:
         return [x for x in enumerate(self.con.cursor().execute(f'''SELECT text_q FROM Questions
          WHERE company = \'{company}\'''').fetchall())]
 
-    def get_company_password(self, company):  # получение пароля для клиентов компании
+    def get_company_password(self, company):
+        """ получение пароля для клиентов компании """
         return self.con.cursor().execute(f'''SELECT password_cl FROM Companies
          WHERE title = \'{company}\'''').fetchall()[0][0]
 
-    def check_company(self, company):  # проверка компании на существование
+    def check_company(self, company):
+        """ проверка компании на существование """
         if self.con.cursor().execute(f'''SELECT count(*) FROM Companies
          WHERE title = \'{company}\'''').fetchall()[0][0] != 0:
             return True
         else:
             return False
 
-    def remove_user_company(self, id_tg, company):  # редактирование принадлежности пользователя к компании
+    def remove_user_company(self, id_tg, company):
+        """ редактирование принадлежности пользователя к компании """
         self.con.cursor().execute(f'''UPDATE Users
                 SET company = '{company}'
                  WHERE id_tg = \'{id_tg}\'''')
         self.con.commit()
 
-    def check_user_company(self, id_tg):  # проверка принадлежности пользователя к компании
+    def check_user_company(self, id_tg):
+        """ проверка принадлежности пользователя к компании """
         if self.con.cursor().execute(f'''SELECT company FROM Users
          WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0] not in [None, '']:
             return True
         else:
             return False
 
-    def get_answer(self, question, company):  # получение ответа на вопрос
+    def get_answer(self, question, company):
+        """ получение ответа на вопрос """
         return self.con.cursor().execute(f'''SELECT text_a FROM Questions
          WHERE company = '{company}' AND
          text_q = \'{question}\'''').fetchall()[0][0]
 
-    def get_ids(self, company):  # получение всех айди пользователей данной компании
+    def get_ids(self, company):
+        """ получение всех айди пользователей данной компании """
         return [x[0] for x in self.con.cursor().execute(f'''SELECT id_tg FROM Users
          WHERE company = \'{company}\'''').fetchall()]
 
-    def get_mailings(self):  # получение всех рассылок на сегодня
+    def get_mailings(self):
+        """ получение всех рассылок на сегодня """
         day = datetime.today().strftime('%d.%m.%Y')
         # print(day)
         return [(x[0], self.get_ids(x[1])) for x in self.con.cursor().execute(f'''SELECT text, company FROM Mailings
                 WHERE date = \'{day}\'''').fetchall()]
 
-    def get_user_post(self, id_tg):  # получение должности пользователя
+    def get_user_post(self, id_tg):
+        """ получение должности пользователя """
         return self.con.cursor().execute(f'''SELECT post FROM Users
                  WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
-    def get_user_company(self, id_tg):  # получение компании, в которой пользователь
+    def get_user_company(self, id_tg):
+        """ получение компании, в которой пользователь """
         return self.con.cursor().execute(f'''SELECT company FROM Users
                  WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
+    def get_user_name(self, id_tg):
+        """ получение имя пользователя """
+        return self.con.cursor().execute(f'''SELECT name FROM Users
+                 WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
+    def edit_user_post(self, post, id_tg):
+        """ редактирование роли """
+        self.con.cursor().execute(f'''UPDATE Users
+        SET post = {post}
+         WHERE id_tg = \'{id_tg}\'''')
+        self.con.commit()
+
+# Тест функций
 # bd = DB()
 # print(bd.get_user_company('1234wer'))
 # print(bd.get_user_post('1234wer'))
@@ -171,4 +233,4 @@ class DB:
 # print(bd.get_answer('a3', 'Comp'))
 # print(bd.get_ids('A'))
 # print(bd.get_mailings())
-
+# print(bd.get_user_name('1925398093'))
