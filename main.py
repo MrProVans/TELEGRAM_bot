@@ -8,7 +8,7 @@ from telegram.ext import Updater, MessageHandler, Filters, ConversationHandler
 from telegram.ext import CommandHandler
 from for_DBwork import DB
 
-# Импорт необходимых библиотек
+# Импорт необходимых библиотек.
 # Запускаем логгирование
 logging.basicConfig(filename='logging.log',
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
