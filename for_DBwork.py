@@ -210,8 +210,32 @@ class DB:  # Класс для работы с Базой Данных
          WHERE id_tg = \'{id_tg}\'''')
         self.con.commit()
 
+    def get_info_for_file(self):
+        """ получение данных для формирования таблицы """
+        itog = []
+        users = 'Пользователи', [('Фaмилия', 'Имя', 'Отчество', 'Должность(1-админ, 0-клиент)', 'Компания')] + self.con.cursor().execute(f'''SELECT surname, name, patronymic,
+post, company FROM Users''').fetchall()
+        itog.append(users)
+        companies = 'Компании', [
+            ('Название компании', 'Номер телефона', 'Пароль для сотрудников')] +\
+                    self.con.cursor().execute(f'''SELECT title, number_phone,
+password_cl FROM Companies''').fetchall()
+        itog.append(companies)
+        mailings = 'Уведомления', [
+            ('Сообщение', 'Дата отправления', 'Для сотрудников компании...')] + \
+                    self.con.cursor().execute(f'''SELECT text, date,
+company FROM Mailings''').fetchall()
+        itog.append(mailings)
+        questions = 'Вопросы', [
+            ('Вопрос', 'Ответ', 'Для сотрудников компании...')] + \
+                   self.con.cursor().execute(f'''SELECT text_q, text_a,
+company FROM Questions''').fetchall()
+        itog.append(questions)
+        return itog
+
 # Тест функций
 # bd = DB()
+# print(bd.get_info_for_file())
 # print(bd.get_user_company('1234wer'))
 # print(bd.get_user_post('1234wer'))
 # bd.add_company('a', 'b', 'c')

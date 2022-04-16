@@ -3798,3 +3798,318 @@ sqlite3.OperationalError: near "1925398093": syntax error
 2022-04-16 02:37:23,229 - telegram.bot - DEBUG - []
 2022-04-16 02:37:23,229 - telegram.bot - DEBUG - Exiting: get_updates
 2022-04-16 02:37:23,229 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:16,232 - telegram.ext.dispatcher - DEBUG - Setting singleton dispatcher as <telegram.ext.dispatcher.Dispatcher object at 0x000002057F911450>
+2022-04-16 02:50:16,243 - apscheduler.scheduler - INFO - Scheduler started
+2022-04-16 02:50:16,258 - apscheduler.scheduler - DEBUG - Looking for jobs to run
+2022-04-16 02:50:16,258 - apscheduler.scheduler - DEBUG - No jobs; waiting until a job is added
+2022-04-16 02:50:16,258 - telegram.bot - DEBUG - Entering: get_me
+2022-04-16 02:50:16,658 - telegram.bot - DEBUG - {'first_name': 'MS_BugAgen_PVS_bot', 'can_join_groups': True, 'can_read_all_group_messages': False, 'is_bot': True, 'id': 5355485794, 'username': 'MS_BugAgen_PVS_bot', 'supports_inline_queries': False}
+2022-04-16 02:50:16,658 - telegram.bot - DEBUG - Exiting: get_me
+2022-04-16 02:50:16,673 - telegram.ext.updater - DEBUG - Bot:5355485794:dispatcher - started
+2022-04-16 02:50:16,718 - telegram.ext.updater - DEBUG - Bot:5355485794:updater - started
+2022-04-16 02:50:16,718 - telegram.ext.updater - DEBUG - Updater thread started (polling)
+2022-04-16 02:50:16,718 - telegram.ext.updater - DEBUG - Start network loop retry bootstrap del webhook
+2022-04-16 02:50:16,718 - telegram.ext.updater - DEBUG - Waiting for Dispatcher and polling to start
+2022-04-16 02:50:16,763 - telegram.ext.updater - DEBUG - Deleting webhook
+2022-04-16 02:50:16,824 - telegram.bot - DEBUG - Entering: delete_webhook
+2022-04-16 02:50:16,871 - telegram.ext.dispatcher - DEBUG - Dispatcher started
+2022-04-16 02:50:17,043 - telegram.bot - DEBUG - True
+2022-04-16 02:50:17,058 - telegram.bot - DEBUG - Exiting: delete_webhook
+2022-04-16 02:50:17,074 - telegram.ext.updater - DEBUG - Bootstrap done
+2022-04-16 02:50:17,089 - telegram.ext.updater - DEBUG - Start network loop retry getting Updates
+2022-04-16 02:50:17,104 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:19,926 - telegram.bot - DEBUG - Getting updates: [978204303]
+2022-04-16 02:50:19,941 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002057F9144C0>]
+2022-04-16 02:50:19,941 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:50:19,941 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:19,941 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'date': 1650066619, 'caption_entities': [], 'text': '/help', 'channel_chat_created': False, 'photo': [], 'delete_chat_photo': False, 'supergroup_chat_created': False, 'new_chat_members': [], 'new_chat_photo': [], 'group_chat_created': False, 'chat': {'type': 'private', 'id': 1925398093, 'first_name': 'PVS'}, 'entities': [{'length': 5, 'offset': 0, 'type': 'bot_command'}], 'message_id': 1240, 'from': {'first_name': 'PVS', 'is_bot': False, 'id': 1925398093, 'language_code': 'ru'}}, 'update_id': 978204303}
+2022-04-16 02:50:19,941 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:50:19,941 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:50:20,077 - telegram.bot - DEBUG - Entering: send_message
+2022-04-16 02:50:20,532 - telegram.bot - DEBUG - {'date': 1650066619, 'caption_entities': [], 'text': 'Привет, уважаемый пользователь, Иван, Ваша роль - Admin.\nДоступные Вам функции:\n/get_xlsx_file - получить Excel таблицу со всеми данными для просмотра и диагностики\n/stop используется для остановки любого процесса, в котором бы вы не находились.\n /creating_company используется для создания новой компании.\nДанные, используемые при создании компании: название компании, её уникальный пароль, номер телефона.\n /edit_post изменить/выбрать роль.\n/delete_company используется для удаления уже существующей компании. Для удаления необходимо только название.\n /add_mailing используется для создания новой рассылки. Для её создания необходимо несколько элементов: компания, текст, даты отправления.\n /delete_mailing используется для удаления рассылки. Для её удаления необходимо несколько элементов: компания, текст, дата отправления.\n/add_question используется для создания нового вопроса. Для его создания необходимо несколько элементов: компания, текст вопроса, текст ответа.\n/redact_question используется для редактирования существующего вопроса. Для его редактирования необходимонесколько элементов: компания, текст вопроса, изменённый текст ответа.\n/delete_question используется для удаления вопроса. Для его удаления необходимо несколько элементов: компания, текст вопроса, текст ответа.\nПриятного использования!', 'channel_chat_created': False, 'photo': [], 'delete_chat_photo': False, 'supergroup_chat_created': False, 'new_chat_members': [], 'new_chat_photo': [], 'group_chat_created': False, 'chat': {'type': 'private', 'id': 1925398093, 'first_name': 'PVS'}, 'entities': [{'length': 14, 'offset': 80, 'type': 'bot_command'}, {'length': 5, 'offset': 165, 'type': 'bot_command'}, {'length': 17, 'offset': 247, 'type': 'bot_command'}, {'length': 10, 'offset': 409, 'type': 'bot_command'}, {'length': 15, 'offset': 443, 'type': 'bot_command'}, {'length': 12, 'offset': 554, 'type': 'bot_command'}, {'length': 15, 'offset': 693, 'type': 'bot_command'}, {'length': 13, 'offset': 828, 'type': 'bot_command'}, {'length': 16, 'offset': 972, 'type': 'bot_command'}, {'length': 16, 'offset': 1148, 'type': 'bot_command'}], 'message_id': 1241, 'from': {'first_name': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'id': 5355485794, 'username': 'MS_BugAgen_PVS_bot'}}
+2022-04-16 02:50:20,548 - telegram.bot - DEBUG - Exiting: send_message
+2022-04-16 02:50:22,443 - telegram.bot - DEBUG - Getting updates: [978204304]
+2022-04-16 02:50:22,443 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002057F914580>]
+2022-04-16 02:50:22,443 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:50:22,443 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:22,444 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'date': 1650066621, 'caption_entities': [], 'text': '/get_xlsx_file', 'channel_chat_created': False, 'photo': [], 'delete_chat_photo': False, 'supergroup_chat_created': False, 'new_chat_members': [], 'new_chat_photo': [], 'group_chat_created': False, 'chat': {'type': 'private', 'id': 1925398093, 'first_name': 'PVS'}, 'entities': [{'length': 14, 'offset': 0, 'type': 'bot_command'}], 'message_id': 1242, 'from': {'first_name': 'PVS', 'is_bot': False, 'id': 1925398093, 'language_code': 'ru'}}, 'update_id': 978204304}
+2022-04-16 02:50:22,444 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:50:22,444 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:50:22,444 - telegram.bot - DEBUG - Entering: send_document
+2022-04-16 02:50:22,614 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\main.py", line 449, in get_file
+    context.bot.send_document(chat_id=str(update.message.from_user.id), document='logging.log')
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 130, in decorator
+    result = func(*args, **kwargs)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 973, in send_document
+    return self._message(  # type: ignore[return-value]
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\extbot.py", line 200, in _message
+    result = super()._message(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 336, in _message
+    result = self._post(endpoint, data, timeout=timeout, api_kwargs=api_kwargs)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 295, in _post
+    return self.request.post(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\utils\request.py", line 361, in post
+    result = self._request_wrapper(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\utils\request.py", line 279, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Invalid file http url specified: unsupported url protocol
+2022-04-16 02:50:28,931 - telegram.bot - DEBUG - Getting updates: [978204305]
+2022-04-16 02:50:28,931 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002057F9144C0>]
+2022-04-16 02:50:28,931 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:50:28,931 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:28,931 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'date': 1650066628, 'caption_entities': [], 'text': '/get_xlsx_file', 'channel_chat_created': False, 'photo': [], 'delete_chat_photo': False, 'supergroup_chat_created': False, 'new_chat_members': [], 'new_chat_photo': [], 'group_chat_created': False, 'chat': {'type': 'private', 'id': 1925398093, 'first_name': 'PVS'}, 'entities': [{'length': 14, 'offset': 0, 'type': 'bot_command'}], 'message_id': 1243, 'from': {'first_name': 'PVS', 'is_bot': False, 'id': 1925398093, 'language_code': 'ru'}}, 'update_id': 978204305}
+2022-04-16 02:50:28,932 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:50:28,932 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:50:28,932 - telegram.bot - DEBUG - Entering: send_document
+2022-04-16 02:50:29,039 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\main.py", line 449, in get_file
+    context.bot.send_document(chat_id=str(update.message.from_user.id), document='logging.log')
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 130, in decorator
+    result = func(*args, **kwargs)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 973, in send_document
+    return self._message(  # type: ignore[return-value]
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\extbot.py", line 200, in _message
+    result = super()._message(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 336, in _message
+    result = self._post(endpoint, data, timeout=timeout, api_kwargs=api_kwargs)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 295, in _post
+    return self.request.post(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\utils\request.py", line 361, in post
+    result = self._request_wrapper(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\utils\request.py", line 279, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Invalid file http url specified: unsupported url protocol
+2022-04-16 02:50:39,068 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 02:50:39,068 - telegram.bot - DEBUG - []
+2022-04-16 02:50:39,068 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:50:39,084 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:49,196 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 02:50:49,196 - telegram.bot - DEBUG - []
+2022-04-16 02:50:49,196 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:50:49,196 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:50:59,320 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 02:50:59,320 - telegram.bot - DEBUG - []
+2022-04-16 02:50:59,320 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:50:59,320 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:51:06,728 - telegram.bot - DEBUG - Getting updates: [978204306]
+2022-04-16 02:51:06,728 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002057F914580>]
+2022-04-16 02:51:06,728 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:51:06,728 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 02:51:06,728 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'date': 1650066666, 'caption_entities': [], 'text': '/get_xlsx_file', 'channel_chat_created': False, 'photo': [], 'delete_chat_photo': False, 'supergroup_chat_created': False, 'new_chat_members': [], 'new_chat_photo': [], 'group_chat_created': False, 'chat': {'type': 'private', 'id': 1925398093, 'first_name': 'PVS'}, 'entities': [{'length': 14, 'offset': 0, 'type': 'bot_command'}], 'message_id': 1244, 'from': {'first_name': 'PVS', 'is_bot': False, 'id': 1925398093, 'language_code': 'ru'}}, 'update_id': 978204306}
+2022-04-16 02:51:06,729 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:51:06,759 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 02:51:06,759 - telegram.bot - DEBUG - Entering: send_document
+2022-04-16 02:51:06,885 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\main.py", line 449, in get_file
+    context.bot.send_document(chat_id=str(update.message.from_user.id), document='logging.log')
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 130, in decorator
+    result = func(*args, **kwargs)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 973, in send_document
+    return self._message(  # type: ignore[return-value]
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\extbot.py", line 200, in _message
+    result = super()._message(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 336, in _message
+    result = self._post(endpoint, data, timeout=timeout, api_kwargs=api_kwargs)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\bot.py", line 295, in _post
+    return self.request.post(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\utils\request.py", line 361, in post
+    result = self._request_wrapper(
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\utils\request.py", line 279, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Invalid file http url specified: unsupported url protocol
+2022-04-16 02:51:16,818 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 02:51:16,834 - telegram.bot - DEBUG - []
+2022-04-16 02:51:16,849 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 02:51:16,849 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:07:45,607 - telegram.ext.dispatcher - DEBUG - Setting singleton dispatcher as <telegram.ext.dispatcher.Dispatcher object at 0x0000018E6BFC8930>
+2022-04-16 04:07:45,616 - apscheduler.scheduler - INFO - Scheduler started
+2022-04-16 04:07:45,647 - apscheduler.scheduler - DEBUG - Looking for jobs to run
+2022-04-16 04:07:45,647 - telegram.bot - DEBUG - Entering: get_me
+2022-04-16 04:07:45,679 - apscheduler.scheduler - DEBUG - No jobs; waiting until a job is added
+2022-04-16 04:07:46,086 - telegram.bot - DEBUG - {'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794, 'can_read_all_group_messages': False, 'supports_inline_queries': False, 'can_join_groups': True}
+2022-04-16 04:07:46,102 - telegram.bot - DEBUG - Exiting: get_me
+2022-04-16 04:07:46,117 - telegram.ext.updater - DEBUG - Bot:5355485794:dispatcher - started
+2022-04-16 04:07:46,133 - telegram.ext.updater - DEBUG - Bot:5355485794:updater - started
+2022-04-16 04:07:46,133 - telegram.ext.updater - DEBUG - Updater thread started (polling)
+2022-04-16 04:07:46,133 - telegram.ext.updater - DEBUG - Start network loop retry bootstrap del webhook
+2022-04-16 04:07:46,133 - telegram.ext.updater - DEBUG - Deleting webhook
+2022-04-16 04:07:46,133 - telegram.bot - DEBUG - Entering: delete_webhook
+2022-04-16 04:07:46,133 - telegram.ext.updater - DEBUG - Waiting for Dispatcher and polling to start
+2022-04-16 04:07:46,241 - telegram.ext.dispatcher - DEBUG - Dispatcher started
+2022-04-16 04:07:46,321 - telegram.bot - DEBUG - True
+2022-04-16 04:07:46,337 - telegram.bot - DEBUG - Exiting: delete_webhook
+2022-04-16 04:07:46,352 - telegram.ext.updater - DEBUG - Bootstrap done
+2022-04-16 04:07:46,367 - telegram.ext.updater - DEBUG - Start network loop retry getting Updates
+2022-04-16 04:07:46,367 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:07:56,465 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:07:56,481 - telegram.bot - DEBUG - []
+2022-04-16 04:07:56,481 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:07:56,481 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:06,584 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:08:06,584 - telegram.bot - DEBUG - []
+2022-04-16 04:08:06,584 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:06,584 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:16,692 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:08:16,707 - telegram.bot - DEBUG - []
+2022-04-16 04:08:16,722 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:16,722 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:17,576 - telegram.bot - DEBUG - Getting updates: [978204322]
+2022-04-16 04:08:17,576 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x0000018E6C00AD00>]
+2022-04-16 04:08:17,576 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:17,592 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:17,592 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'chat': {'id': 1925398093, 'first_name': 'PVS', 'type': 'private'}, 'photo': [], 'message_id': 1273, 'caption_entities': [], 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'date': 1650071296, 'text': '/get_xlsx_file', 'group_chat_created': False, 'supergroup_chat_created': False, 'new_chat_photo': [], 'entities': [{'type': 'bot_command', 'offset': 0, 'length': 14}], 'from': {'is_bot': False, 'first_name': 'PVS', 'id': 1925398093, 'language_code': 'ru'}}, 'update_id': 978204322}
+2022-04-16 04:08:17,592 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 04:08:17,592 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 04:08:17,607 - telegram.bot - DEBUG - Entering: send_message
+2022-04-16 04:08:18,072 - telegram.bot - DEBUG - {'chat': {'id': 1925398093, 'first_name': 'PVS', 'type': 'private'}, 'photo': [], 'message_id': 1274, 'caption_entities': [], 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'date': 1650071297, 'text': 'Подождите, происходит формирование\nтаблицы, загрузка и отправление...\nЭто займет несколько минут. Спасибо за ожидание.', 'group_chat_created': False, 'supergroup_chat_created': False, 'new_chat_photo': [], 'entities': [], 'from': {'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-04-16 04:08:18,088 - telegram.bot - DEBUG - Exiting: send_message
+2022-04-16 04:08:21,406 - telegram.bot - DEBUG - Entering: send_document
+2022-04-16 04:08:27,737 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:08:27,737 - telegram.bot - DEBUG - []
+2022-04-16 04:08:27,737 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:27,737 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:37,844 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:08:37,844 - telegram.bot - DEBUG - []
+2022-04-16 04:08:37,844 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:37,844 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:47,988 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:08:48,004 - telegram.bot - DEBUG - []
+2022-04-16 04:08:48,019 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:48,034 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:08:58,222 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:08:58,222 - telegram.bot - DEBUG - []
+2022-04-16 04:08:58,222 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:08:58,238 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:09:08,343 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:09:08,343 - telegram.bot - DEBUG - []
+2022-04-16 04:09:08,343 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:09:08,343 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:09:18,434 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:09:18,434 - telegram.bot - DEBUG - []
+2022-04-16 04:09:18,434 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:09:18,434 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:09:21,779 - telegram.bot - DEBUG - {'chat': {'id': 1925398093, 'first_name': 'PVS', 'type': 'private'}, 'photo': [], 'message_id': 1275, 'caption_entities': [], 'channel_chat_created': False, 'new_chat_members': [], 'delete_chat_photo': False, 'date': 1650071361, 'group_chat_created': False, 'supergroup_chat_created': False, 'document': {'file_id': 'BQACAgIAAxkDAAIE-2JaF0GzdKKH0_mzY83kHGW2kBVBAALbFAAC5ebQStnHOn2_epxuIwQ', 'mime_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'file_unique_id': 'AgAD2xQAAuXm0Eo', 'file_name': 'Таблица_Excel_БД.xlsx', 'file_size': 7462}, 'new_chat_photo': [], 'entities': [], 'from': {'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-04-16 04:09:21,779 - telegram.bot - DEBUG - Exiting: send_document
+2022-04-16 04:09:28,546 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:09:28,546 - telegram.bot - DEBUG - []
+2022-04-16 04:09:28,546 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:09:28,546 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:09:38,656 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:09:38,656 - telegram.bot - DEBUG - []
+2022-04-16 04:09:38,656 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:09:38,656 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:09:48,737 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:09:48,753 - telegram.bot - DEBUG - []
+2022-04-16 04:09:48,768 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:09:48,768 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:09:58,903 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:09:58,918 - telegram.bot - DEBUG - []
+2022-04-16 04:09:58,918 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:09:58,933 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:09,044 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:10:09,044 - telegram.bot - DEBUG - []
+2022-04-16 04:10:09,060 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:10:09,090 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:19,207 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:10:19,207 - telegram.bot - DEBUG - []
+2022-04-16 04:10:19,223 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:10:19,238 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:29,428 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:10:29,428 - telegram.bot - DEBUG - []
+2022-04-16 04:10:29,428 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:10:29,428 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:39,542 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:10:39,542 - telegram.bot - DEBUG - []
+2022-04-16 04:10:39,542 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:10:39,542 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:41,542 - telegram.ext.dispatcher - DEBUG - Setting singleton dispatcher as <telegram.ext.dispatcher.Dispatcher object at 0x00000292D92D8930>
+2022-04-16 04:10:41,556 - apscheduler.scheduler - INFO - Scheduler started
+2022-04-16 04:10:41,571 - apscheduler.scheduler - DEBUG - Looking for jobs to run
+2022-04-16 04:10:41,587 - apscheduler.scheduler - DEBUG - No jobs; waiting until a job is added
+2022-04-16 04:10:41,587 - telegram.bot - DEBUG - Entering: get_me
+2022-04-16 04:10:42,008 - telegram.bot - DEBUG - {'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794, 'can_read_all_group_messages': False, 'can_join_groups': True, 'is_bot': True, 'supports_inline_queries': False}
+2022-04-16 04:10:42,008 - telegram.bot - DEBUG - Exiting: get_me
+2022-04-16 04:10:42,024 - telegram.ext.updater - DEBUG - Bot:5355485794:dispatcher - started
+2022-04-16 04:10:42,039 - telegram.ext.updater - DEBUG - Bot:5355485794:updater - started
+2022-04-16 04:10:42,039 - telegram.ext.updater - DEBUG - Updater thread started (polling)
+2022-04-16 04:10:42,055 - telegram.ext.updater - DEBUG - Start network loop retry bootstrap del webhook
+2022-04-16 04:10:42,055 - telegram.ext.updater - DEBUG - Deleting webhook
+2022-04-16 04:10:42,055 - telegram.bot - DEBUG - Entering: delete_webhook
+2022-04-16 04:10:42,071 - telegram.ext.updater - DEBUG - Waiting for Dispatcher and polling to start
+2022-04-16 04:10:42,163 - telegram.bot - DEBUG - True
+2022-04-16 04:10:42,195 - telegram.bot - DEBUG - Exiting: delete_webhook
+2022-04-16 04:10:42,226 - telegram.ext.updater - DEBUG - Bootstrap done
+2022-04-16 04:10:42,226 - telegram.ext.updater - DEBUG - Start network loop retry getting Updates
+2022-04-16 04:10:42,226 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:42,241 - telegram.ext.dispatcher - DEBUG - Dispatcher started
+2022-04-16 04:10:47,257 - telegram.bot - DEBUG - Getting updates: [978204323]
+2022-04-16 04:10:47,257 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x00000292D931BD00>]
+2022-04-16 04:10:47,257 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:10:47,257 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:47,273 - telegram.ext.dispatcher - DEBUG - Processing Update: {'update_id': 978204323, 'message': {'new_chat_members': [], 'message_id': 1276, 'date': 1650071446, 'delete_chat_photo': False, 'entities': [{'length': 5, 'type': 'bot_command', 'offset': 0}], 'group_chat_created': False, 'new_chat_photo': [], 'text': '/help', 'caption_entities': [], 'channel_chat_created': False, 'supergroup_chat_created': False, 'chat': {'id': 1925398093, 'type': 'private', 'first_name': 'PVS'}, 'photo': [], 'from': {'first_name': 'PVS', 'id': 1925398093, 'is_bot': False, 'language_code': 'ru'}}}
+2022-04-16 04:10:47,303 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 04:10:47,303 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 04:10:47,476 - telegram.bot - DEBUG - Entering: send_message
+2022-04-16 04:10:47,847 - telegram.bot - DEBUG - {'new_chat_members': [], 'message_id': 1277, 'date': 1650071447, 'delete_chat_photo': False, 'entities': [{'length': 14, 'type': 'bot_command', 'offset': 80}, {'length': 5, 'type': 'bot_command', 'offset': 165}, {'length': 17, 'type': 'bot_command', 'offset': 247}, {'length': 10, 'type': 'bot_command', 'offset': 409}, {'length': 15, 'type': 'bot_command', 'offset': 443}, {'length': 12, 'type': 'bot_command', 'offset': 554}, {'length': 15, 'type': 'bot_command', 'offset': 693}, {'length': 13, 'type': 'bot_command', 'offset': 828}, {'length': 16, 'type': 'bot_command', 'offset': 972}, {'length': 16, 'type': 'bot_command', 'offset': 1148}], 'group_chat_created': False, 'new_chat_photo': [], 'text': 'Привет, уважаемый пользователь, Иван, Ваша роль - Admin.\nДоступные Вам функции:\n/get_xlsx_file - получить Excel таблицу со всеми данными для просмотра и диагностики\n/stop используется для остановки любого процесса, в котором бы вы не находились.\n /creating_company используется для создания новой компании.\nДанные, используемые при создании компании: название компании, её уникальный пароль, номер телефона.\n /edit_post изменить/выбрать роль.\n/delete_company используется для удаления уже существующей компании. Для удаления необходимо только название.\n /add_mailing используется для создания новой рассылки. Для её создания необходимо несколько элементов: компания, текст, даты отправления.\n /delete_mailing используется для удаления рассылки. Для её удаления необходимо несколько элементов: компания, текст, дата отправления.\n/add_question используется для создания нового вопроса. Для его создания необходимо несколько элементов: компания, текст вопроса, текст ответа.\n/redact_question используется для редактирования существующего вопроса. Для его редактирования необходимонесколько элементов: компания, текст вопроса, изменённый текст ответа.\n/delete_question используется для удаления вопроса. Для его удаления необходимо несколько элементов: компания, текст вопроса, текст ответа.\nПриятного использования!', 'caption_entities': [], 'channel_chat_created': False, 'supergroup_chat_created': False, 'chat': {'id': 1925398093, 'type': 'private', 'first_name': 'PVS'}, 'photo': [], 'from': {'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794, 'is_bot': True}}
+2022-04-16 04:10:47,847 - telegram.bot - DEBUG - Exiting: send_message
+2022-04-16 04:10:50,722 - telegram.bot - DEBUG - Getting updates: [978204324]
+2022-04-16 04:10:50,722 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x00000292D931BDC0>]
+2022-04-16 04:10:50,722 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:10:50,722 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:10:50,722 - telegram.ext.dispatcher - DEBUG - Processing Update: {'update_id': 978204324, 'message': {'new_chat_members': [], 'message_id': 1278, 'date': 1650071450, 'delete_chat_photo': False, 'entities': [{'length': 14, 'type': 'bot_command', 'offset': 0}], 'group_chat_created': False, 'new_chat_photo': [], 'text': '/get_xlsx_file', 'caption_entities': [], 'channel_chat_created': False, 'supergroup_chat_created': False, 'chat': {'id': 1925398093, 'type': 'private', 'first_name': 'PVS'}, 'photo': [], 'from': {'first_name': 'PVS', 'id': 1925398093, 'is_bot': False, 'language_code': 'ru'}}}
+2022-04-16 04:10:50,738 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 04:10:50,753 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-04-16 04:10:50,753 - telegram.bot - DEBUG - Entering: send_message
+2022-04-16 04:10:50,911 - telegram.bot - DEBUG - {'new_chat_members': [], 'message_id': 1279, 'date': 1650071450, 'delete_chat_photo': False, 'entities': [], 'group_chat_created': False, 'new_chat_photo': [], 'text': 'Подождите, происходит формирование\nтаблицы, загрузка и отправление...\nЭто займет несколько минут. Спасибо за ожидание.', 'caption_entities': [], 'channel_chat_created': False, 'supergroup_chat_created': False, 'chat': {'id': 1925398093, 'type': 'private', 'first_name': 'PVS'}, 'photo': [], 'from': {'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794, 'is_bot': True}}
+2022-04-16 04:10:50,911 - telegram.bot - DEBUG - Exiting: send_message
+2022-04-16 04:10:54,272 - telegram.bot - DEBUG - Entering: send_document
+2022-04-16 04:11:00,821 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:11:00,821 - telegram.bot - DEBUG - []
+2022-04-16 04:11:00,821 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:11:00,821 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:11:10,965 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:11:10,965 - telegram.bot - DEBUG - []
+2022-04-16 04:11:10,965 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:11:10,965 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:11:21,080 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:11:21,080 - telegram.bot - DEBUG - []
+2022-04-16 04:11:21,080 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:11:21,080 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:11:31,299 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:11:31,299 - telegram.bot - DEBUG - []
+2022-04-16 04:11:31,315 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:11:31,331 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:11:41,497 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:11:41,497 - telegram.bot - DEBUG - []
+2022-04-16 04:11:41,497 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:11:41,497 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:11:45,248 - telegram.bot - DEBUG - {'new_chat_members': [], 'message_id': 1280, 'date': 1650071504, 'delete_chat_photo': False, 'entities': [], 'group_chat_created': False, 'new_chat_photo': [], 'caption_entities': [], 'channel_chat_created': False, 'supergroup_chat_created': False, 'chat': {'id': 1925398093, 'type': 'private', 'first_name': 'PVS'}, 'document': {'file_name': 'Таблица_Excel_БД.xlsx', 'mime_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'file_unique_id': 'AgAD3BQAAuXm0Eo', 'file_size': 7462, 'file_id': 'BQACAgIAAxkDAAIFAAFiWhfQTkPOrZg0FhxPRDOEvuZPMwAC3BQAAuXm0EpHRNH2SXKuKiME'}, 'photo': [], 'from': {'first_name': 'MS_BugAgen_PVS_bot', 'username': 'MS_BugAgen_PVS_bot', 'id': 5355485794, 'is_bot': True}}
+2022-04-16 04:11:45,248 - telegram.bot - DEBUG - Exiting: send_document
+2022-04-16 04:11:51,623 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:11:51,639 - telegram.bot - DEBUG - []
+2022-04-16 04:11:51,654 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:11:51,669 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:12:01,855 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:12:01,871 - telegram.bot - DEBUG - []
+2022-04-16 04:12:01,871 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:12:01,871 - telegram.bot - DEBUG - Entering: get_updates
+2022-04-16 04:12:12,190 - telegram.bot - DEBUG - No new updates found.
+2022-04-16 04:12:12,206 - telegram.bot - DEBUG - []
+2022-04-16 04:12:12,221 - telegram.bot - DEBUG - Exiting: get_updates
+2022-04-16 04:12:12,236 - telegram.bot - DEBUG - Entering: get_updates

@@ -1,5 +1,6 @@
 import logging
 import threading
+import xlsxwriter
 import schedule
 import telegram.ext
 from telegram import ReplyKeyboardMarkup
@@ -288,6 +289,7 @@ def helps(update, context):  # помощь
     if checking_status(update):
         update.message.reply_text(f'Привет, уважаемый пользователь, {BD.get_user_name(str(update.message.from_user.id))}, Ваша роль - Admin.\n'
                                   'Доступные Вам функции:\n'
+                                  '/get_xlsx_file - получить Excel таблицу со всеми данными для просмотра и диагностики\n'
                                   '/stop используется для остановки любого процесса, в котором бы вы не находились.\n '
                                   '/creating_company используется для создания новой компании.\n'
                                   'Данные, используемые при создании компании: название компании, её уникальный '
@@ -444,6 +446,22 @@ def write_question_del(update, context):  # удаление вопроса
     return ConversationHandler.END
 
 
+def get_file(update, context):  # получение xlsx файла с информацией из БД
+    update.message.reply_text('''Подождите, происходит формирование
+таблицы, загрузка и отправление...
+Это займет несколько минут. Спасибо за ожидание.''')
+    workbook = xlsxwriter.Workbook('Таблица_Excel_БД.xlsx')
+    data = BD.get_info_for_file()
+    for sheet in data:
+        name, stroki = sheet
+        worksheet = workbook.add_worksheet(name)
+        for row, stroka in enumerate(stroki):
+            for i in range(len(stroka)):
+                worksheet.write(row, i, stroka[i])
+    workbook.close()
+    context.bot.sendDocument(chat_id=update.message.from_user.id, document=open('Таблица_Excel_БД.xlsx', mode='rb'))
+
+
 def send_messange(dp):  # отправление рассылки
     list_of_messanges = BD.get_mailings()
     for mailing in list_of_messanges:
@@ -495,6 +513,7 @@ def main():  # основной поток, функция
     dp.add_handler(script_linking_company)
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
     dp.add_handler(CommandHandler("help", helps))
+    dp.add_handler(CommandHandler("get_xlsx_file", get_file))
     reply_keyboard = [['/help', '/stop']]
     global markup
     markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=False)
