@@ -8,7 +8,7 @@ from telegram.ext import Updater, MessageHandler, Filters, ConversationHandler
 from telegram.ext import CommandHandler
 from for_DBwork import DB
 
-# Импорт необходимых библиотек.
+# Импорт необходимых библиотек
 # Запускаем логгирование
 logging.basicConfig(filename='logging.log',
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG
@@ -16,7 +16,7 @@ logging.basicConfig(filename='logging.log',
 
 logger = logging.getLogger(__name__)
 TOKEN = '5355485794:AAGBNp_ZMuEw8vK1t9UiuuDOV8yOY0OQN_E'  # токен бота
-SUPER_PASSWORD = '0000'  # пароль для админа
+SUPER_PASSWORD = 'Admin777'  # пароль для админа
 BD = DB()  # подключение к БД
 
 
@@ -480,7 +480,7 @@ def main():  # основной поток, функция
     dp = updater.dispatcher
 
     # schedule.every(7).seconds.do(send_messange, dp)
-    schedule.every().day.at("12:00").do(send_messange, dp)  # рассылка уведомлений
+    schedule.every().day.at("12:30").do(send_messange, dp)  # рассылка уведомлений
     threading.Thread(target=thr).start()
     # сценарии
     script_registration = ConversationHandler(

@@ -194,7 +194,7 @@ class DB:  # Класс для работы с Базой Данных
                  WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
     def get_user_company(self, id_tg):
-        """ получение компании, в которой пользователь """
+        """ получение компании, в которой находится пользователь """
         return self.con.cursor().execute(f'''SELECT company FROM Users
                  WHERE id_tg = \'{id_tg}\'''').fetchall()[0][0]
 
