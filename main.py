@@ -1,6 +1,7 @@
 import logging
 import threading
 import xlsxwriter
+import requests
 import schedule
 import telegram.ext
 from telegram import ReplyKeyboardMarkup
@@ -265,7 +266,7 @@ def input_get_telephone(update, context):  # создание компании
 
 
 def creating_company(update, context):  # создание компании
-    BD.add_company(context.user_data['title'].capitalize(), update.message.text, context.user_data['password'])
+    BD.add_company(context.user_data['title'], update.message.text, context.user_data['password'])
     update.message.reply_text('Успешно! Компания создана, а Вы её администратор.')
     context.user_data.clear()
     return ConversationHandler.END
@@ -296,6 +297,7 @@ def helps(update, context):  # помощь
         update.message.reply_text(
             f'Привет, уважаемый пользователь, {BD.get_user_name(str(update.message.from_user.id))}, Ваша роль - Admin.\n'
             'Доступные Вам функции:\n'
+            '/geocoder - Узнать адрес компании\n'
             '/get_xlsx_file - получить Excel таблицу со всеми данными для просмотра и диагностики\n'
             '/stop используется для остановки любого процесса, в котором бы вы не находились.\n '
             '/creating_company используется для создания новой компании.\n'
@@ -320,6 +322,7 @@ def helps(update, context):  # помощь
         update.message.reply_text(
             f'Привет, уважаемый пользователь, {BD.get_user_name(str(update.message.from_user.id))}.\n'
             'Доступные Вам функции:\n'
+            '/geocoder - Узнать адрес компании\n'
             '/stop используется для остановки любого процесса, в котором Вы находитесь.\n'
             '/reg_company используется для регистрации в какой-либо компании.\n'
             '/edit_post изменить/выбрать роль.\n'
@@ -337,7 +340,7 @@ def add_mailing(update, context):  # добавление рассылки
 
 
 def what_company(update, context):  # определение компании
-    company = update.message.text.capitalize()
+    company = update.message.text
     if BD.check_company(company):
         context.user_data['company'] = company
         update.message.reply_text('Какое сообщение хотите, чтоб отправлялось/удалялось?')
@@ -349,7 +352,7 @@ def what_company(update, context):  # определение компании
 
 
 def get_text_mailing(update, context):  # редактирование рассылки
-    context.user_data['text'] = update.message.text.capitalize()
+    context.user_data['text'] = update.message.text
     update.message.reply_text('''В какую(-ые) даты отправлять или уведомления в какую дату удалить? 
 Вводите через запятую с пробелом, в формете день.месяц.год.
 Например: 25.05.2022, 23.02.2023''')
@@ -485,6 +488,31 @@ def send_messange(dp):  # отправление рассылки
             telegram.ext.CallbackContext(dp).bot.sendMessage(chat_id=id_, text=text)
 
 
+def geocoder(update, context):
+    update.message.reply_text('''Узнаю адрес компании...''')
+    geocoder_uri = geocoder_request_template = "http://geocode-maps.yandex.ru/1.x/"
+    response = requests.get(geocoder_uri, params={
+        "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
+        "format": "json",
+        "geocode": "Нижний Новгород"
+    })
+
+    toponym = response.json()["response"]["GeoObjectCollection"][
+        "featureMember"][0]["GeoObject"]
+    toponym_coodrinates = toponym["Point"]["pos"]
+    toponym_longitude, toponym_lattitude = toponym_coodrinates.split(" ")
+    delta = "0.045"
+    ll = ",".join([toponym_longitude, toponym_lattitude])
+    spn = ",".join([delta, delta])
+
+    static_api_request = f"http://static-maps.yandex.ru/1.x/?ll={ll}&spn={spn}&l=map"
+    context.bot.send_photo(
+        update.message.chat_id,
+        static_api_request,
+        caption="В просторах интернета сказано, что агенство находится в Нижнем Новгороде (точного адреса нет)"
+    )
+
+
 def thr():  # второй поток для рассылки
     while True:
         schedule.run_pending()
@@ -495,7 +523,7 @@ def main():  # основной поток, функция
     dp = updater.dispatcher
 
     # schedule.every(7).seconds.do(send_messange, dp)
-    schedule.every().day.at("12:30").do(send_messange, dp)  # рассылка уведомлений
+    schedule.every().day.at("16:30").do(send_messange, dp)  # рассылка уведомлений
     threading.Thread(target=thr).start()
     # сценарии
     script_registration = ConversationHandler(
@@ -528,6 +556,7 @@ def main():  # основной поток, функция
     dp.add_handler(script_linking_company)
     dp.add_handler(CommandHandler("unbinding", unbinding_company))
     dp.add_handler(CommandHandler("help", helps))
+    dp.add_handler(CommandHandler("geocoder", geocoder))
     dp.add_handler(CommandHandler("get_xlsx_file", get_file))
     reply_keyboard = [['/help', '/stop']]
     global markup
