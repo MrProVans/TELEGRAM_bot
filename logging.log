@@ -1,0 +1,336 @@
+2022-06-24 23:34:28,783 - telegram.ext.dispatcher - DEBUG - Setting singleton dispatcher as <telegram.ext.dispatcher.Dispatcher object at 0x000002117EB5E450>
+2022-06-24 23:34:28,794 - apscheduler.scheduler - INFO - Scheduler started
+2022-06-24 23:34:28,823 - apscheduler.scheduler - DEBUG - Looking for jobs to run
+2022-06-24 23:34:28,823 - apscheduler.scheduler - DEBUG - No jobs; waiting until a job is added
+2022-06-24 23:34:28,823 - telegram.bot - DEBUG - Entering: get_me
+2022-06-24 23:34:29,231 - telegram.bot - DEBUG - {'username': 'MS_BugAgen_PVS_bot', 'supports_inline_queries': False, 'can_join_groups': True, 'is_bot': True, 'can_read_all_group_messages': False, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}
+2022-06-24 23:34:29,247 - telegram.bot - DEBUG - Exiting: get_me
+2022-06-24 23:34:29,277 - telegram.ext.updater - DEBUG - Bot:5355485794:dispatcher - started
+2022-06-24 23:34:29,292 - telegram.ext.updater - DEBUG - Bot:5355485794:updater - started
+2022-06-24 23:34:29,292 - telegram.ext.updater - DEBUG - Updater thread started (polling)
+2022-06-24 23:34:29,292 - telegram.ext.updater - DEBUG - Start network loop retry bootstrap del webhook
+2022-06-24 23:34:29,292 - telegram.ext.updater - DEBUG - Deleting webhook
+2022-06-24 23:34:29,292 - telegram.bot - DEBUG - Entering: delete_webhook
+2022-06-24 23:34:29,292 - telegram.ext.updater - DEBUG - Waiting for Dispatcher and polling to start
+2022-06-24 23:34:29,415 - telegram.ext.dispatcher - DEBUG - Dispatcher started
+2022-06-24 23:34:29,431 - telegram.bot - DEBUG - True
+2022-06-24 23:34:29,463 - telegram.bot - DEBUG - Exiting: delete_webhook
+2022-06-24 23:34:29,463 - telegram.ext.updater - DEBUG - Bootstrap done
+2022-06-24 23:34:29,463 - telegram.ext.updater - DEBUG - Start network loop retry getting Updates
+2022-06-24 23:34:29,463 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:34:39,599 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:34:39,599 - telegram.bot - DEBUG - []
+2022-06-24 23:34:39,615 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:34:39,615 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:34:49,750 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:34:49,751 - telegram.bot - DEBUG - []
+2022-06-24 23:34:49,751 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:34:49,751 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:34:59,856 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:34:59,856 - telegram.bot - DEBUG - []
+2022-06-24 23:34:59,856 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:34:59,856 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:02,133 - telegram.bot - DEBUG - Getting updates: [978207316]
+2022-06-24 23:35:02,133 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68100>]
+2022-06-24 23:35:02,133 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:02,133 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:02,163 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 13, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6530, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/all_question', 'date': 1656102903, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207316}
+2022-06-24 23:35:02,163 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:02,163 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:02,178 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\main.py", line 363, in all_question
+    company = BD.get_user_company(str(update.message.from_user.id))
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\for_DBwork.py", line 198, in get_user_company
+    return self.con.cursor().execute(f'''SELECT company FROM Users
+IndexError: list index out of range
+2022-06-24 23:35:10,788 - telegram.bot - DEBUG - Getting updates: [978207317]
+2022-06-24 23:35:10,788 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68280>]
+2022-06-24 23:35:10,788 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:10,803 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:10,803 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 5, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6531, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/help', 'date': 1656102912, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207317}
+2022-06-24 23:35:10,803 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:10,803 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:10,818 - telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "C:\Users\kloch\AppData\Local\Programs\Python\Python39\lib\site-packages\telegram\ext\handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\main.py", line 296, in helps
+    if checking_status(update):
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\main.py", line 223, in checking_status
+    return False if BD.get_user_post(update.message.from_user.id) == 0 else True
+  File "C:\Users\kloch\PycharmProjects\TELEGRAM_bot\for_DBwork.py", line 193, in get_user_post
+    return self.con.cursor().execute(f'''SELECT post FROM Users
+IndexError: list index out of range
+2022-06-24 23:35:18,102 - telegram.bot - DEBUG - Getting updates: [978207318]
+2022-06-24 23:35:18,102 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68100>]
+2022-06-24 23:35:18,117 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:18,117 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:18,117 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 6, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6532, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/start', 'date': 1656102919, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207318}
+2022-06-24 23:35:18,117 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:18,117 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:18,507 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6533, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Здравствуйте! Я смогу ответить на возникшие у Вас вопросы,\nно для начала нужно пройти регистрацию. Напишите, пожалуйста, Вашу роль.\nНапример: Klient или Клиент', 'date': 1656102919, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:18,523 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:26,266 - telegram.bot - DEBUG - Getting updates: [978207319]
+2022-06-24 23:35:26,281 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:35:26,296 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:26,311 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:26,343 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6534, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Klient', 'date': 1656102927, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207319}
+2022-06-24 23:35:26,343 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state 1
+2022-06-24 23:35:26,359 - __main__ - INFO - Klient Admin False
+2022-06-24 23:35:26,375 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:26,559 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6535, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Готов произвести регистрацию.\nВведите Ваше ФИО через пробел.\nНапример: Иванов Иван Иванович', 'date': 1656102927, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:26,575 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:36,495 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:35:36,495 - telegram.bot - DEBUG - []
+2022-06-24 23:35:36,495 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:36,495 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:38,569 - telegram.bot - DEBUG - Getting updates: [978207320]
+2022-06-24 23:35:38,569 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68100>]
+2022-06-24 23:35:38,585 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:38,585 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:38,585 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6536, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Klochkov Ivan', 'date': 1656102939, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207320}
+2022-06-24 23:35:38,585 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state 3
+2022-06-24 23:35:38,585 - __main__ - INFO - ['Klochkov', 'Ivan']0
+2022-06-24 23:35:38,646 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:38,914 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6537, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Регистрация прошла успешно!', 'date': 1656102940, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:38,930 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:38,977 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:39,243 - telegram.bot - DEBUG - {'entities': [{'type': 'bot_command', 'length': 12, 'offset': 78}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6538, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Ivan, теперь Вы можете вступить в компанию.\nДля этого напишите или нажмите на /reg_company', 'date': 1656102940, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:39,243 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:41,633 - telegram.bot - DEBUG - Getting updates: [978207321]
+2022-06-24 23:35:41,633 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:35:41,633 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:41,633 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:41,633 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 5, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6539, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/help', 'date': 1656102942, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207321}
+2022-06-24 23:35:41,649 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:41,649 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:41,679 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:41,899 - telegram.bot - DEBUG - {'entities': [{'type': 'bot_command', 'length': 9, 'offset': 61}, {'type': 'bot_command', 'length': 5, 'offset': 95}, {'type': 'bot_command', 'length': 12, 'offset': 170}, {'type': 'bot_command', 'length': 10, 'offset': 235}, {'type': 'bot_command', 'length': 10, 'offset': 269}, {'type': 'bot_command', 'length': 13, 'offset': 330}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6540, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Привет, уважаемый пользователь, Ivan.\nДоступные Вам функции:\n/geocoder - Узнать адрес компании\n/stop используется для остановки любого процесса, в котором Вы находитесь.\n/reg_company используется для регистрации в какой-либо компании.\n/edit_post изменить/выбрать роль.\n/unbinding используется для отключения Вас от вашей компании\n/all_question при вызове возвращаются все вопросы, реализованные для Вашей компании.\n Все остальное бот будет принимать как вопрос, заданный Вами.\nПриятного использования!', 'date': 1656102943, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:41,915 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:44,801 - telegram.bot - DEBUG - Getting updates: [978207322]
+2022-06-24 23:35:44,801 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68280>]
+2022-06-24 23:35:44,801 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:44,817 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:44,817 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 10, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6541, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/edit_post', 'date': 1656102946, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207322}
+2022-06-24 23:35:44,817 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,817 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,817 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,832 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:44,879 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:45,082 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6542, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Ivan, введите роль, которую хотите установить. (Клиент, Админ)', 'date': 1656102946, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:45,098 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:52,065 - telegram.bot - DEBUG - Getting updates: [978207323]
+2022-06-24 23:35:52,065 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:35:52,065 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:52,081 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:52,111 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6543, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Admin', 'date': 1656102953, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207323}
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,111 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,126 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,126 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:52,126 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state 1
+2022-06-24 23:35:52,126 - __main__ - INFO - Admin Admin True
+2022-06-24 23:35:52,126 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:35:52,282 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6544, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Для того чтобы сменить роль,\nнужно ввести выданный Вам пароль:\nНапример: 0000', 'date': 1656102953, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:35:52,297 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:35:59,787 - telegram.bot - DEBUG - Getting updates: [978207324]
+2022-06-24 23:35:59,787 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68100>]
+2022-06-24 23:35:59,787 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:35:59,803 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:35:59,818 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6545, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Admin777', 'date': 1656102961, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207324}
+2022-06-24 23:35:59,818 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,818 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,818 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,848 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,864 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,864 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,864 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,864 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,864 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:35:59,864 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state 2
+2022-06-24 23:35:59,864 - __main__ - INFO - Admin777 Admin777 True
+2022-06-24 23:35:59,864 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:00,021 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6546, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Готов произвести смену роли...', 'date': 1656102961, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:00,037 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:00,147 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:00,367 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6547, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Успешно! Ваша роль изменена.', 'date': 1656102961, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:00,367 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:01,858 - telegram.bot - DEBUG - Getting updates: [978207325]
+2022-06-24 23:36:01,874 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:36:01,874 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:01,874 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:01,904 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 5, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6548, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/help', 'date': 1656102963, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207325}
+2022-06-24 23:36:01,904 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:01,904 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:01,951 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:02,121 - telegram.bot - DEBUG - {'entities': [{'type': 'bot_command', 'length': 9, 'offset': 80}, {'type': 'bot_command', 'length': 14, 'offset': 114}, {'type': 'bot_command', 'length': 5, 'offset': 199}, {'type': 'bot_command', 'length': 17, 'offset': 281}, {'type': 'bot_command', 'length': 10, 'offset': 443}, {'type': 'bot_command', 'length': 15, 'offset': 477}, {'type': 'bot_command', 'length': 12, 'offset': 588}, {'type': 'bot_command', 'length': 15, 'offset': 727}, {'type': 'bot_command', 'length': 13, 'offset': 862}, {'type': 'bot_command', 'length': 16, 'offset': 1006}, {'type': 'bot_command', 'length': 16, 'offset': 1182}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6549, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Привет, уважаемый пользователь, Ivan, Ваша роль - Admin.\nДоступные Вам функции:\n/geocoder - Узнать адрес компании\n/get_xlsx_file - получить Excel таблицу со всеми данными для просмотра и диагностики\n/stop используется для остановки любого процесса, в котором бы вы не находились.\n /creating_company используется для создания новой компании.\nДанные, используемые при создании компании: название компании, её уникальный пароль, номер телефона.\n /edit_post изменить/выбрать роль.\n/delete_company используется для удаления уже существующей компании. Для удаления необходимо только название.\n /add_mailing используется для создания новой рассылки. Для её создания необходимо несколько элементов: компания, текст, даты отправления.\n /delete_mailing используется для удаления рассылки. Для её удаления необходимо несколько элементов: компания, текст, дата отправления.\n/add_question используется для создания нового вопроса. Для его создания необходимо несколько элементов: компания, текст вопроса, текст ответа.\n/redact_question используется для редактирования существующего вопроса. Для его редактирования необходимонесколько элементов: компания, текст вопроса, изменённый текст ответа.\n/delete_question используется для удаления вопроса. Для его удаления необходимо несколько элементов: компания, текст вопроса, текст ответа.\nПриятного использования!', 'date': 1656102963, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:02,136 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:11,976 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:36:11,976 - telegram.bot - DEBUG - []
+2022-06-24 23:36:11,976 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:11,992 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:13,795 - telegram.bot - DEBUG - Getting updates: [978207326]
+2022-06-24 23:36:13,795 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68280>]
+2022-06-24 23:36:13,795 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:13,795 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:13,795 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 9, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6550, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/geocoder', 'date': 1656102975, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207326}
+2022-06-24 23:36:13,796 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:13,796 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:13,796 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:13,982 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6551, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Узнаю адрес компании...', 'date': 1656102975, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:13,997 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:14,503 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): geocode-maps.yandex.ru:80
+2022-06-24 23:36:14,645 - urllib3.connectionpool - DEBUG - http://geocode-maps.yandex.ru:80 "GET /1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&format=json&geocode=%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9+%D0%9D%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4 HTTP/1.1" 200 None
+2022-06-24 23:36:14,676 - telegram.bot - DEBUG - Entering: send_photo
+2022-06-24 23:36:14,830 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6552, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'caption': 'В просторах интернета сказано, что агенство находится в Нижнем Новгороде (точного адреса нет)', 'date': 1656102976, 'group_chat_created': False, 'photo': [{'file_unique_id': 'AQADMq0xGxaDXVN4', 'file_id': 'AgACAgQAAxkDAAIZmGK2IEBHsbatlp-GkbXPqslCIEX0AAIyrTEbFoNdU1eHvyDgQGtuAQADAgADcwADKQQ', 'height': 67, 'width': 90, 'file_size': 1260}, {'file_unique_id': 'AQADMq0xGxaDXVNy', 'file_id': 'AgACAgQAAxkDAAIZmGK2IEBHsbatlp-GkbXPqslCIEX0AAIyrTEbFoNdU1eHvyDgQGtuAQADAgADbQADKQQ', 'height': 240, 'width': 320, 'file_size': 20981}, {'file_unique_id': 'AQADMq0xGxaDXVN9', 'file_id': 'AgACAgQAAxkDAAIZmGK2IEBHsbatlp-GkbXPqslCIEX0AAIyrTEbFoNdU1eHvyDgQGtuAQADAgADeAADKQQ', 'height': 450, 'width': 600, 'file_size': 59062}], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:14,845 - telegram.bot - DEBUG - Exiting: send_photo
+2022-06-24 23:36:17,502 - telegram.bot - DEBUG - Getting updates: [978207327]
+2022-06-24 23:36:17,502 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:36:17,502 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:17,502 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:17,502 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 5, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6553, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/help', 'date': 1656102978, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207327}
+2022-06-24 23:36:17,502 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:17,503 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:17,611 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:17,735 - telegram.bot - DEBUG - {'entities': [{'type': 'bot_command', 'length': 9, 'offset': 80}, {'type': 'bot_command', 'length': 14, 'offset': 114}, {'type': 'bot_command', 'length': 5, 'offset': 199}, {'type': 'bot_command', 'length': 17, 'offset': 281}, {'type': 'bot_command', 'length': 10, 'offset': 443}, {'type': 'bot_command', 'length': 15, 'offset': 477}, {'type': 'bot_command', 'length': 12, 'offset': 588}, {'type': 'bot_command', 'length': 15, 'offset': 727}, {'type': 'bot_command', 'length': 13, 'offset': 862}, {'type': 'bot_command', 'length': 16, 'offset': 1006}, {'type': 'bot_command', 'length': 16, 'offset': 1182}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6554, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Привет, уважаемый пользователь, Ivan, Ваша роль - Admin.\nДоступные Вам функции:\n/geocoder - Узнать адрес компании\n/get_xlsx_file - получить Excel таблицу со всеми данными для просмотра и диагностики\n/stop используется для остановки любого процесса, в котором бы вы не находились.\n /creating_company используется для создания новой компании.\nДанные, используемые при создании компании: название компании, её уникальный пароль, номер телефона.\n /edit_post изменить/выбрать роль.\n/delete_company используется для удаления уже существующей компании. Для удаления необходимо только название.\n /add_mailing используется для создания новой рассылки. Для её создания необходимо несколько элементов: компания, текст, даты отправления.\n /delete_mailing используется для удаления рассылки. Для её удаления необходимо несколько элементов: компания, текст, дата отправления.\n/add_question используется для создания нового вопроса. Для его создания необходимо несколько элементов: компания, текст вопроса, текст ответа.\n/redact_question используется для редактирования существующего вопроса. Для его редактирования необходимонесколько элементов: компания, текст вопроса, изменённый текст ответа.\n/delete_question используется для удаления вопроса. Для его удаления необходимо несколько элементов: компания, текст вопроса, текст ответа.\nПриятного использования!', 'date': 1656102979, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:17,735 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:20,761 - telegram.bot - DEBUG - Getting updates: [978207328]
+2022-06-24 23:36:20,761 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68280>]
+2022-06-24 23:36:20,777 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:20,792 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:20,792 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 10, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6555, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/edit_post', 'date': 1656102982, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207328}
+2022-06-24 23:36:20,824 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,824 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,824 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,824 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,824 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,854 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,870 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,901 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,916 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,932 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:20,979 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:21,199 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6556, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Ivan, введите роль, которую хотите установить. (Клиент, Админ)', 'date': 1656102982, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:21,214 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:25,084 - telegram.bot - DEBUG - Getting updates: [978207329]
+2022-06-24 23:36:25,084 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:36:25,084 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:25,084 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:25,084 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6557, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Klient', 'date': 1656102986, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207329}
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:25,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state 1
+2022-06-24 23:36:25,085 - __main__ - INFO - Klient Admin False
+2022-06-24 23:36:25,085 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:25,226 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6558, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Для того чтобы сменить роль,\nнужно ввести выданный Вам пароль:\nНапример: 0000', 'date': 1656102986, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:25,226 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:28,993 - telegram.bot - DEBUG - Getting updates: [978207330]
+2022-06-24 23:36:29,008 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68280>]
+2022-06-24 23:36:29,008 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:29,008 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:29,008 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6559, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Admin777', 'date': 1656102990, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207330}
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,053 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:29,085 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state 2
+2022-06-24 23:36:29,085 - __main__ - INFO - Admin777 Admin777 True
+2022-06-24 23:36:29,085 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:29,479 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6560, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Готов произвести смену роли...', 'date': 1656102990, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:29,479 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:29,541 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:29,681 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6561, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Успешно! Ваша роль изменена.', 'date': 1656102990, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:29,681 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:35,895 - telegram.bot - DEBUG - Getting updates: [978207331]
+2022-06-24 23:36:35,895 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:36:35,895 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:35,895 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:35,895 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 15, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6562, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/delete_company', 'date': 1656102997, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207331}
+2022-06-24 23:36:35,896 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:35,896 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:35,896 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:35,896 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:36:35,939 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:36:36,063 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6563, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Для создания компании Вы должны быть администратором.', 'date': 1656102997, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:36:36,063 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:36:46,059 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:36:46,075 - telegram.bot - DEBUG - []
+2022-06-24 23:36:46,090 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:46,106 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:36:56,243 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:36:56,259 - telegram.bot - DEBUG - []
+2022-06-24 23:36:56,274 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:36:56,290 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:06,478 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:37:06,494 - telegram.bot - DEBUG - []
+2022-06-24 23:37:06,494 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:06,494 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:16,647 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:37:16,647 - telegram.bot - DEBUG - []
+2022-06-24 23:37:16,647 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:16,663 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:19,701 - telegram.bot - DEBUG - Getting updates: [978207332]
+2022-06-24 23:37:19,717 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68280>]
+2022-06-24 23:37:19,732 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:19,747 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:19,778 - telegram.ext.dispatcher - DEBUG - Processing Update: {'message': {'entities': [{'type': 'bot_command', 'length': 14, 'offset': 0}], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6564, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': '/get_xlsx_file', 'date': 1656103040, 'group_chat_created': False, 'photo': [], 'from': {'is_bot': False, 'first_name': 'PVS', 'language_code': 'ru', 'id': 1925398093}}, 'update_id': 978207332}
+2022-06-24 23:37:19,793 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:37:19,809 - telegram.ext.conversationhandler - DEBUG - selecting conversation (1925398093, 1925398093) with state None
+2022-06-24 23:37:19,824 - telegram.bot - DEBUG - Entering: send_message
+2022-06-24 23:37:20,059 - telegram.bot - DEBUG - {'entities': [], 'new_chat_photo': [], 'delete_chat_photo': False, 'new_chat_members': [], 'supergroup_chat_created': False, 'message_id': 6565, 'channel_chat_created': False, 'chat': {'type': 'private', 'first_name': 'PVS', 'id': 1925398093}, 'caption_entities': [], 'text': 'Подождите, происходит формирование\nтаблицы, загрузка и отправление...\nЭто займет несколько минут. Спасибо за ожидание.', 'date': 1656103041, 'group_chat_created': False, 'photo': [], 'from': {'username': 'MS_BugAgen_PVS_bot', 'is_bot': True, 'first_name': 'MS_BugAgen_PVS_bot', 'id': 5355485794}}
+2022-06-24 23:37:20,059 - telegram.bot - DEBUG - Exiting: send_message
+2022-06-24 23:37:24,412 - telegram.bot - DEBUG - Entering: send_document
+2022-06-24 23:37:29,966 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:37:29,966 - telegram.bot - DEBUG - []
+2022-06-24 23:37:29,982 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:29,998 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:40,138 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:37:40,138 - telegram.bot - DEBUG - []
+2022-06-24 23:37:40,170 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:40,170 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:44,130 - telegram.bot - DEBUG - Getting updates: [978207333]
+2022-06-24 23:37:44,144 - telegram.bot - DEBUG - [<telegram.update.Update object at 0x000002117EB68340>]
+2022-06-24 23:37:44,144 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:44,160 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:37:54,313 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:37:54,313 - telegram.bot - DEBUG - []
+2022-06-24 23:37:54,329 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:37:54,344 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:38:04,543 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:38:04,543 - telegram.bot - DEBUG - []
+2022-06-24 23:38:04,543 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:38:04,543 - telegram.bot - DEBUG - Entering: get_updates
+2022-06-24 23:38:14,665 - telegram.bot - DEBUG - No new updates found.
+2022-06-24 23:38:14,681 - telegram.bot - DEBUG - []
+2022-06-24 23:38:14,696 - telegram.bot - DEBUG - Exiting: get_updates
+2022-06-24 23:38:14,696 - telegram.bot - DEBUG - Entering: get_updates
